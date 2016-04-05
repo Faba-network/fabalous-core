@@ -1,0 +1,34 @@
+{
+  "name": "fabalous-core",
+  "version": "0.0.1",
+  "description": "The Fabulous Faba MVC framework",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel": "babel --presets es2015 -d ./dist ./dist"
+  },
+  "typings": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Faba-network/fabalous-core.git"
+  },
+  "keywords": [
+    "MVC",
+    "React",
+    "Node",
+    "Framework"
+  ],
+  "author": "Jörg Wasmeier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Faba-network/fabalous-core/issues"
+  },
+  "homepage": "https://github.com/Faba-network/fabalous-core#readme",
+  "dependencies": {
+    "mongodb": "^2.1.2",
+    "object.assign": "^4.0.3"
+  },
+  "devDependencies": {
+  },
+  "readme": "README.md"
+}
