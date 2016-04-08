@@ -1,14 +1,10 @@
-import FabaCore from "./core/FabaCore";
-import FabaTransportBase from "./transport/FabaTransportBase";
+import FabaCore from "./../core/FabaCore";
+import FabaTransportBase from "./../transport/FabaTransportBase";
 /**
  * Created by joergwasmeier on 26.12.15.
  *
  *
  */
-
-//import FabaCore from "./core/FabaCore";
-//import FabaTransportBase from "./transport/FabaTransportBase";
-//import FabaEvent from "./core/FabaEvent";
 
 
 export default class FabaWebApplication extends FabaCore {

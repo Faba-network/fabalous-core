@@ -5,7 +5,7 @@
  */
 
 import {IFabaMediator} from "./IFabaMediator";
-import FabaWebApplication from "../FabaWebApplication";
+import FabaWebApplication from "../runtimes/FabaWebApplication";
 
 export default class FabaMediator implements IFabaMediator {
     cmdList = new Array<Object>();

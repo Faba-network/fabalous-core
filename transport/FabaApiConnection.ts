@@ -1,7 +1,7 @@
 
 import {trace} from "../utils/Logger";
 import FabaTransportBase from "./FabaTransportBase";
-import FabaWebApplication from "../FabaWebApplication";
+import FabaWebApplication from "../runtimes/FabaWebApplication";
 import FabaEvent from "../core/FabaEvent";
 /**
  * Created by creativecode on 25.12.15.

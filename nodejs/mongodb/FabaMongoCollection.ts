@@ -1,4 +1,4 @@
-import FabaServer from "../../FabaServer";
+import FabaServer from "../../runtimes/FabaServer";
 import {Collection, Cursor, CollectionFindOptions} from "mongodb";
 
 /**

@@ -4,9 +4,10 @@
  *
  */
 
-import FabaCore from "./core/FabaCore";
-import FabaValueObject from "./core/FabaValueObject";
-import FabaMongoConnection from "./nodejs/mongodb/FabaMongoConnection";
+import FabaCore from "./../core/FabaCore";
+import FabaValueObject from "./../core/FabaValueObject";
+import FabaMongoConnection from "./../nodejs/mongodb/FabaMongoConnection";
+import {trace} from "./../utils/Logger";
 
 export default class FabaServer extends FabaCore{
   static db:FabaMongoConnection;
@@ -54,6 +55,7 @@ export default class FabaServer extends FabaCore{
 
 
   private startServer(){
+    trace("Start server");
     this.app.use(function *test(){
       this.body = 'Hello World';
     });
@@ -77,7 +79,12 @@ export default class FabaServer extends FabaCore{
       });
     });
     */
-   // this.app.listen(4001);
+    var port = 3000;
+    // @ifdef TEST
+    port = 3000 + Math.floor((Math.random() * 1000) + 1);
+    // @endif
+    trace(port);
+    this.app.listen(port);
   }
 
   private rawBody(req, res, next) {

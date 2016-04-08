@@ -17,8 +17,9 @@ export default class FabaMongoConnection {
 
   private connectHandler(err:any, conDb:Db) {
     if (err) {
-      //trace(err);
-      //trace("Could not connect to Database");
+      trace(err);
+      trace("Could not connect to Database");
+
       setTimeout(() => {
         MongoClient.connect(this.dbUrl, null, (err, conDb) => {
           this.connectHandler(err, conDb)
@@ -29,6 +30,6 @@ export default class FabaMongoConnection {
 
     this.dataBase = conDb;
 
-    console.log("Connect to Database");
+    trace("Connect to Database");
   }
 }
