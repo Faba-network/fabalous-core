@@ -12,18 +12,27 @@ import {trace} from "./../utils/Logger";
 export default class FabaServer extends FabaCore{
   static db:FabaMongoConnection;
 
-  koa = require('koa');
+  //koa = require('koa');
 
-  express = require('express');
+  //express = require('express');
   app;
 
-  assign = require('object.assign').getPolyfill();
+  //assign = require('object.assign').getPolyfill();
 
   constructor(){
     super();
 
-    this.app = this.koa();
-    this.startServer();
+    var http = require("http");
+    var server = http.createServer(function(request, response) {
+      response.writeHead(200, {"Content-Type": "text/html"});
+      response.write("Hallo");
+      response.end();
+    });
+
+    server.listen(3150);
+
+
+   // this.startServer();
   }
 
   addDatabaseConnection(db:FabaMongoConnection){

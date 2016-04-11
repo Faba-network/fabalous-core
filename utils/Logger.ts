@@ -29,7 +29,7 @@ trace = function(){};
 
 // @ifdef SERVER
 declare var System;
-trace = System.import('tracer').colorConsole().log;
+//trace = System.import('tracer').colorConsole().log;
 // @endif
 
 // @ifdef SILENT
