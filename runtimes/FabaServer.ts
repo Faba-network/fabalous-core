@@ -3,36 +3,25 @@
  *
  *
  */
-
 import FabaCore from "./../core/FabaCore";
 import FabaValueObject from "./../core/FabaValueObject";
 import FabaMongoConnection from "./../nodejs/mongodb/FabaMongoConnection";
 import {trace} from "./../utils/Logger";
+import {Express} from "express";
+import Response = Express.Response;
+import Request = Express.Request;
 
 export default class FabaServer extends FabaCore{
   static db:FabaMongoConnection;
-
-  //koa = require('koa');
-
-  //express = require('express');
-  app;
-
-  //assign = require('object.assign').getPolyfill();
+  express = require('express');
+  app:Express;
+  koa = require('koa');
+  assign = require('object.assign').getPolyfill();
 
   constructor(){
     super();
-
-    var http = require("http");
-    var server = http.createServer(function(request, response) {
-      response.writeHead(200, {"Content-Type": "text/html"});
-      response.write("Hallo");
-      response.end();
-    });
-
-    server.listen(3150);
-
-
-   // this.startServer();
+    this.app = this.express();
+    this.startServer();
   }
 
   addDatabaseConnection(db:FabaMongoConnection){
@@ -61,15 +50,11 @@ export default class FabaServer extends FabaCore{
     return obj;
   }
 
-
-
   private startServer(){
-    trace("Start server");
-    this.app.use(function *test(){
-      this.body = 'Hello World';
+    this.app.get('/',function (req:any, res:any) {
+      res.send("Hallo welt");
     });
 
-    /*
     this.app.all('/api/', function(req:any, res:any, next) {
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -78,7 +63,7 @@ export default class FabaServer extends FabaCore{
 
     this.app.post('/api/', (req, res) => {
       let body = JSON.parse(req.rawBody);
-      let currentEvent = new SynapseApplication.events[body.identifyer];
+      let currentEvent = new FabaCore.events[body.identifyer];
 
       var h:any = this.assign(currentEvent, JSON.parse(req.rawBody));
       h = this.parseObject(h);
@@ -87,12 +72,12 @@ export default class FabaServer extends FabaCore{
         res.send(JSON.stringify(event));
       });
     });
-    */
-    var port = 3000;
+
+    var port = 3120;
     // @ifdef TEST
     port = 3000 + Math.floor((Math.random() * 1000) + 1);
     // @endif
-    trace(port);
+    console.log(port);
     this.app.listen(port);
   }
 
@@ -117,5 +102,4 @@ export default class FabaServer extends FabaCore{
       next();
     });
   }
-
 }
