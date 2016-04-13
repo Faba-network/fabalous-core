@@ -11,7 +11,8 @@ export default class FabaApiConnection extends FabaTransportBase{
     private url:string;
 
     constructor(url){
-        super();
+      super();
+      this.url = url;
     }
 
     private completeHandler(data:any):void {
@@ -33,7 +34,7 @@ export default class FabaApiConnection extends FabaTransportBase{
         var nRequest:XMLHttpRequest = new XMLHttpRequest();
         
         nRequest.addEventListener("load", this.completeHandler, false);
-        nRequest.open("POST", "http://localhost:3000/api/", true);
+        nRequest.open("POST", this.url, true);
         //nRequest.setRequestHeader('Content-Type', 'text/plain');
         nRequest.send(super.prepareEventToSend(event));
 
