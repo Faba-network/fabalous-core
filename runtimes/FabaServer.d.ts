@@ -5,11 +5,12 @@
  */
 import FabaCore from "./../core/FabaCore";
 import FabaMongoConnection from "./../nodejs/mongodb/FabaMongoConnection";
+import { Express } from "express";
 export default class FabaServer extends FabaCore {
     static db: FabaMongoConnection;
-    koa: any;
     express: any;
-    app: any;
+    app: Express;
+    koa: any;
     assign: any;
     constructor();
     addDatabaseConnection(db: FabaMongoConnection): void;

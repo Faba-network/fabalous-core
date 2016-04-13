@@ -12,7 +12,7 @@ export default class FabaCore{
   static events:any = {}
   static vos:any = {}
 
-  public addMediator(cls:FabaMediator):boolean {
+  static addMediator(cls:FabaMediator):boolean {
     for (let obj in FabaCore.mediators) {
      // if (obj === cls){
      //   return false;

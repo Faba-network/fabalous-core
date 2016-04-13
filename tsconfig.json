@@ -28,9 +28,7 @@
     "exclude": ["test"],
     "files": [
         "./core/FabaEvent.ts",
-        "./typings/mongodb/mongodb.d.ts",
-        "./typings/node/node.d.ts",
-        "./typings/express/express.d.ts",
+        "./typings/tsd.d.ts",
         "./runtimes/FabaServer.ts",
         "./runtimes/FabaWebApplication.ts",
         "./core/FabaService.ts",

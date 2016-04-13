@@ -61,7 +61,7 @@ export default class FabaServer extends FabaCore{
       next();
     });
 
-    this.app.post('/api/', (req, res) => {
+    this.app.post('/api/', (req:any, res:any) => {
       let body = JSON.parse(req.rawBody);
       let currentEvent = new FabaCore.events[body.identifyer];
 

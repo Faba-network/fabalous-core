@@ -9,6 +9,6 @@ export default class FabaCore {
     static mediators: Array<FabaMediator>;
     static events: any;
     static vos: any;
-    addMediator(cls: FabaMediator): boolean;
+    static addMediator(cls: FabaMediator): boolean;
     static dispatchEvent(event: FabaEvent, resu?: boolean): void;
 }
