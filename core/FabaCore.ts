@@ -31,9 +31,9 @@ export default class FabaCore{
       var routeItem:Array<any> = this.mediators[a].cmdList;
 
       for(var b:number = 0; b < routeItem.length; b++){
-        if (routeItem[b] && routeItem[b].event && routeItem[b].event.name){
+        if (routeItem[b] && routeItem[b].event && routeItem[b].event.identifyer){
           console.log(routeItem[b].event);
-          console.log(routeItem[b].event.name);
+          console.log(routeItem[b].event.identifyer);
 
 
           if (routeItem[b].event.name === event.name){

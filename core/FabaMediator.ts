@@ -6,6 +6,7 @@
 
 import {IFabaMediator} from "./IFabaMediator";
 import FabaWebApplication from "../runtimes/FabaWebApplication";
+import FabaEvent from "./FabaEvent";
 
 export default class FabaMediator implements IFabaMediator {
     cmdList = new Array<Object>();
@@ -20,9 +21,9 @@ export default class FabaMediator implements IFabaMediator {
         // @endif
     }
 
-    addCommand(eventName, command) {
-        this.cmdList.push({event: eventName, cmd: command});
-        FabaWebApplication.events[eventName.name] = eventName;
+    addCommand(event:FabaEvent, command) {
+        this.cmdList.push({event: event, cmd: command});
+        FabaWebApplication.events[event.identifyer] = event;
     }
 
     updateCommand(eventName, command) {
@@ -38,9 +39,9 @@ export default class FabaMediator implements IFabaMediator {
         FabaWebApplication.events[eventName.name] = eventName;
     }
 
-    addSerivce(eventName, command) {
-        this.cmdList.push({event: eventName, cmd: command});
-        FabaWebApplication.events[eventName.name] = eventName;
+    addSerivce(event:FabaEvent, command) {
+      this.cmdList.push({event: event, cmd: command});
+      FabaWebApplication.events[event.identifyer] = event;
     }
 
 
