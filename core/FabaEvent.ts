@@ -19,7 +19,7 @@ export default class FabaEvent {
   }
 
   get name():string {
-    return this.getClassName();
+    return this.identifyer;
   }
 
   getClassName():string {

@@ -21,9 +21,12 @@ export default class FabaMediator implements IFabaMediator {
         // @endif
     }
 
-    addCommand(event:FabaEvent, command) {
-        this.cmdList.push({event: event, cmd: command});
-        FabaWebApplication.events[event.identifyer] = event;
+    addCommand(event, command) {
+      var h:FabaEvent = new event();
+      console.log("addCommand");
+      console.log(h.identifyer);
+      this.cmdList.push({event: event, cmd: command, id:h.identifyer});
+      FabaWebApplication.events[h.identifyer] = event;
     }
 
     updateCommand(eventName, command) {
@@ -32,16 +35,16 @@ export default class FabaMediator implements IFabaMediator {
                 if (md.event != eventName) return md;
             }
         });
-
-        console.log(this.cmdList);
-
+      
         this.cmdList.push({event: eventName, cmd: command});
         FabaWebApplication.events[eventName.name] = eventName;
     }
 
-    addSerivce(event:FabaEvent, command) {
-      this.cmdList.push({event: event, cmd: command});
-      FabaWebApplication.events[event.identifyer] = event;
+    addSerivce(event, command) {
+      var h:FabaEvent = new event();
+
+      this.cmdList.push({event: event, cmd: command, id:h.identifyer});
+      FabaWebApplication.events[h.identifyer] = event;
     }
 
 

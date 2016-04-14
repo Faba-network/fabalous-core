@@ -13,9 +13,6 @@ export default class FabaTransportBase{
 
   protected prepareEventToSend(event:FabaEvent, compress:boolean = true):string {
     var qId = Math.random();
-    //event.qId = qId;
-
-    event.identifyer = event.getClassName();
 
     this.runningQuerysNew.push({e:event, q:qId, v:0, clb: event.callBack});
     event.callBack = null;
