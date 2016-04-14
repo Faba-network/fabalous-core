@@ -24,14 +24,9 @@ export default class FabaCore{
   }
 
   static dispatchEvent(event:FabaEvent, resu?:boolean) {
-    console.log("dispatchEvent");
-
     for(var a:number = 0; a < 1; a++){
       var routeItem:Array<any> = this.mediators[a].cmdList;
       for(var b:number = 0; b < routeItem.length; b++){
-        console.log(routeItem[b].id);
-
-
         if (routeItem[b] && routeItem[b].event && routeItem[b].id){
           if (routeItem[b].id === event.name){
             if (resu) new routeItem[b].cmd().result(event);

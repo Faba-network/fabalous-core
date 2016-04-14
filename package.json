@@ -1,6 +1,6 @@
 {
   "name": "fabalous-core",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "The Fabulous Faba MVC framework",
   "main": "./dist/index.js",
   "scripts": {

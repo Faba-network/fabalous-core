@@ -15,28 +15,20 @@ export default class FabaApiConnection extends FabaTransportBase {
   }
 
   private completeHandler(data:any):void {
-    console.log("completeHandler");
-    console.log(data);
-    console.log(data.target.response);
-
-
     var assign = require('object.assign').getPolyfill();
 
     let jsonString:string = data.target.response;
     var json = JSON.parse(jsonString);
 
     let currentEvent = new FabaWebApplication.events[json.identifyer];
-    console.log(currentEvent);
     var h:any = assign(currentEvent, json);
 
     h.dispatch(null, true);
   }
 
   public send(event:FabaEvent, timeoutTime:number = 5000, timeOut:boolean = true, compress:boolean = true) {
-    console.log(event + "dsfsd");
 
     var nRequest:XMLHttpRequest = new XMLHttpRequest();
-    console.log(super.prepareEventToSend(event));
     nRequest.addEventListener("load", this.completeHandler, false);
     nRequest.open("POST", this.url, true);
     //nRequest.setRequestHeader('Content-Type', 'text/plain');

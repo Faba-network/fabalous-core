@@ -23,8 +23,6 @@ export default class FabaMediator implements IFabaMediator {
 
     addCommand(event, command) {
       var h:FabaEvent = new event();
-      console.log("addCommand");
-      console.log(h.identifyer);
       this.cmdList.push({event: event, cmd: command, id:h.identifyer});
       FabaWebApplication.events[h.identifyer] = event;
     }
