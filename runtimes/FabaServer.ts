@@ -51,6 +51,15 @@ export default class FabaServer extends FabaCore{
   }
 
   private startServer(){
+    this.app.use(function(req:any, res, next){
+      var data = "";
+      req.on('data', function(chunk){ data += chunk});
+      req.on('end', function(){
+        req.rawBody = data;
+        next();
+      })
+    });
+
     this.app.all('/', function(req:any, res:any, next) {
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -60,8 +69,10 @@ export default class FabaServer extends FabaCore{
     this.app.get('/',function (req:any, res:any) {
       res.send("Hallo welt");
     });
-    
-    this.app.post('/api/', (req:any, res:any) => {
+
+    this.app.post('/', (req:any, res:any) => {
+      console.log(req.rawBody);
+
       let body = JSON.parse(req.rawBody);
       let currentEvent = new FabaCore.events[body.identifyer];
 

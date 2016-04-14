@@ -7,38 +7,36 @@ import FabaCore from "./FabaCore";
 
 export default class FabaEvent {
 
-    identifyer:string;
+  identifyer:string;
 
-    public callBack:any = function(){
-        if (this.cbs) this.cbs(this);
-    };
+  public callBack:any = function () {
+    if (this.cbs) this.cbs(this);
+  };
 
-    private cbs:any;
+  private cbs:any;
 
-    constructor() {
+  constructor() {
+  }
+
+  get name():string {
+    return this.getClassName();
+  }
+
+  getClassName():string {
+    if (this.identifyer != null) return this.identifyer;
+    return this.constructor.toString().match(/\w+/g)[1];
+  }
+
+  dispatch(calb?:any, result?:boolean):void {
+    if (calb) {
+      if (!this.callBack) {
+        this.callBack = function () {
+          this.cbs(this);
+        };
+      }
+      this.cbs = calb;
     }
 
-    get name():string{
-        return this.getClassName();
-    }
-
-    getClassName() : string{
-        return this.constructor.toString().match(/\w+/g)[1];
-    }
-
-
-
-
-    dispatch(calb?:any, result?:boolean):void{
-        if (calb){
-            if (!this.callBack){
-                this.callBack = function(){
-                    this.cbs(this);
-                };
-            }
-            this.cbs = calb;
-        }
-
-        FabaCore.dispatchEvent(this, result);
-    }
+    FabaCore.dispatchEvent(this, result);
+  }
 }
