@@ -7,9 +7,9 @@ import { IFabaMediator } from "./IFabaMediator";
 export default class FabaMediator implements IFabaMediator {
     cmdList: Object[];
     constructor();
-    addCommand(event, command: any): void;
+    addCommand(event: any, command: any): void;
     updateCommand(eventName: any, command: any): void;
-    addSerivce(event, command: any): void;
+    addSerivce(event: any, command: any): void;
     registerCommands(): void;
     registerServices(): void;
 }
