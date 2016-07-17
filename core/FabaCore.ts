@@ -9,14 +9,18 @@ import FabaEvent from "./FabaEvent";
 
 export default class FabaCore{
   static mediators:Array<FabaMediator> = new Array<FabaMediator>();
-  static events:any = {}
-  static vos:any = {}
+  static events:any = {};
+  static vos:any = {};
 
   static addMediator(cls:FabaMediator):boolean {
-    for (let obj in FabaCore.mediators) {
-     // if (obj === cls){
-     //   return false;
-     // }
+
+    for (var i = 0; i < FabaCore.mediators.length; i++) {
+      var obj = FabaCore.mediators[i];
+      
+      if (obj === cls){
+        console.log("same");
+        return false;
+      }
     }
 
     FabaCore.mediators.push(cls);
@@ -24,8 +28,9 @@ export default class FabaCore{
   }
 
   static dispatchEvent(event:FabaEvent, resu?:boolean) {
-    for(var a:number = 0; a < 1; a++){
+    for(var a:number = 0; a < this.mediators.length; a++){
       var routeItem:Array<any> = this.mediators[a].cmdList;
+
       for(var b:number = 0; b < routeItem.length; b++){
         if (routeItem[b] && routeItem[b].event && routeItem[b].id){
           if (routeItem[b].id === event.name){

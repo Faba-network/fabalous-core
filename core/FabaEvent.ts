@@ -9,11 +9,9 @@ export default class FabaEvent {
 
   identifyer:string;
 
-  public callBack:any = function () {
-    if (this.cbs) this.cbs(this);
-  };
+  public callBack:any;
 
-  private cbs:any;
+  public cbs:any;
 
   constructor() {
   }
@@ -30,6 +28,7 @@ export default class FabaEvent {
   dispatch(calb?:any, result?:boolean):void {
     if (calb) {
       if (!this.callBack) {
+
         this.callBack = function () {
           this.cbs(this);
         };

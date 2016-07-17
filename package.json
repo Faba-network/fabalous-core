@@ -1,13 +1,11 @@
 {
   "name": "fabalous-core",
-  "version": "0.0.16",
+  "version": "0.0.6",
   "description": "The Fabulous Faba MVC framework",
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "babel": "babel --presets es2015 -d ./dist ./dist",
-    "typings": "tsc && del /s *.js"
-
+    "babel": "babel --presets es2015 -d ./dist ./dist"
   },
   "typings": "./dist/index.d.ts",
   "repository": {

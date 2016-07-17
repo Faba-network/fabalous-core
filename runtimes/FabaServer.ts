@@ -71,15 +71,27 @@ export default class FabaServer extends FabaCore{
     });
 
     this.app.post('/', (req:any, res:any) => {
+      console.log("post income");
       console.log(req.rawBody);
 
       let body = JSON.parse(req.rawBody);
+      console.log(body);
+
       let currentEvent = new FabaCore.events[body.identifyer];
 
+      console.log(currentEvent);
+
+
       var h:any = this.assign(currentEvent, JSON.parse(req.rawBody));
+
+      console.log(h);
+
       h = this.parseObject(h);
 
+      console.log(h);
+      
       h.dispatch((event) => {
+        console.log("back");
         res.send(JSON.stringify(event));
       });
     });
