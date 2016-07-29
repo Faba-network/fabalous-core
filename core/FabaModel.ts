@@ -6,18 +6,23 @@ export default class FabaModel{
         this.bin = new Array<any>();
     }
 
-    addChangeListener(cb) {
-        this.bin.push(cb);
+    addChangeListener(name:string, cb:any) {
+        this.bin.push({name:name, callback:cb});
     }
 
-    removeChangeListener(cb) {
+    removeChangeListener(name:string) {
+        for (var prop in this.bin) {
+            if (this.bin[prop].name == name){
+                delete this.bin[prop];
+            }
+        }
     }
 
     invokeBindChange(){
         if (!this.bin) return;
-        this.bin.forEach(binding =>{
-            binding();
-        })
+        for (var prop in this.bin) {
+            this.bin[prop].callback();
+        }
     }
 }
 

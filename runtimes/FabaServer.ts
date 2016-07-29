@@ -97,9 +97,13 @@ export default class FabaServer extends FabaCore{
     });
 
     var port = 3120;
+
     // @ifdef TEST
     port = 3000 + Math.floor((Math.random() * 1000) + 1);
     // @endif
+
+    port = 3120;
+
     console.log(port);
     this.app.listen(port);
   }

@@ -12,13 +12,13 @@ export default class FabaMediator implements IFabaMediator {
     cmdList = new Array<Object>();
 
     constructor() {
-        // @ifdef CLIENT
+      if (CLIENT){
         this.registerCommands();
-        // @endif
+      }
 
-        // @ifdef SERVER
+      if (SERVER){
         this.registerServices();
-        // @endif
+      }
     }
 
     addCommand(event, command) {
@@ -44,8 +44,6 @@ export default class FabaMediator implements IFabaMediator {
       this.cmdList.push({event: event, cmd: command, id:h.identifyer});
       FabaWebApplication.events[h.identifyer] = event;
     }
-
-
 
     registerCommands() {
 

@@ -27,6 +27,7 @@ export default class FabaWebApplication extends FabaCore {
         }
 
         for (var i = 0; i < this.servers.length; i++) {
+            console.log(this.servers[i].conn);
             this.servers[i].conn.send(event);
         }
     }
