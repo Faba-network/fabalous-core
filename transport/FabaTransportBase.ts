@@ -15,7 +15,6 @@ export default class FabaTransportBase{
     var qId = Math.random();
 
     this.runningQuerysNew.push({e:event, q:qId, v:0, clb: event.callBack});
-    event.callBack = null;
 
     var serilizedData:string = JSON.stringify(event);
     return serilizedData;

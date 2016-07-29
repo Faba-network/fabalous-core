@@ -9,7 +9,7 @@ import FabaCore from "./FabaCore";
 export default class FabaEvent {
 
   identifyer:string;
-  private cbs:any;
+  cbs:any;
 
   constructor() {
     this.identifyer = this.hashCode(this.constructor.toString());
@@ -17,7 +17,7 @@ export default class FabaEvent {
 
   callBack(){
     if (this.cbs) {
-      this.cbs();
+      this.cbs(this);
     }
   }
 
