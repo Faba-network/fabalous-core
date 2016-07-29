@@ -11,9 +11,11 @@ export default class FabaEvent {
   identifyer:string;
   cbs:any;
 
-  constructor() {
-    this.identifyer = this.hashCode(this.constructor.toString());
+  constructor(identifyer:string) {
+    //this.identifyer = this.hashCode(this.constructor.toString());
+    this.identifyer = identifyer;
   }
+
 
   callBack(){
     if (this.cbs) {
