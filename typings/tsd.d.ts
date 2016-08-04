@@ -4,3 +4,7 @@
 /// <reference path="node/node.d.ts" />
 /// <reference path="serve-static/serve-static.d.ts" />
 /// <reference path="mongodb/mongodb.d.ts" />
+
+
+declare var CLIENT;
+declare var SERVER;

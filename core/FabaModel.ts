@@ -1,28 +1,27 @@
 export default class FabaModel{
+    static stores:Array<any>;
 
-    bin:Array<any>;
-
-    constructor(){
-        this.bin = new Array<any>();
-    }
-
-    addChangeListener(name:string, cb:any) {
-        this.bin.push({name:name, callback:cb});
-    }
-
-    removeChangeListener(name:string) {
-        for (var prop in this.bin) {
-            if (this.bin[prop].name == name){
-                delete this.bin[prop];
-            }
+    static setStore(name:string, storeClass:any):any{
+        if (!FabaModel.stores){
+            FabaModel.stores = new Array<any>();
         }
+
+        return FabaModel.stores[name] = new storeClass;
     }
 
-    invokeBindChange(){
-        if (!this.bin) return;
-        for (var prop in this.bin) {
-            this.bin[prop].callback();
+    static getStore(name:string, storeClass:any){
+        if (!FabaModel.stores){
+            FabaModel.stores = new Array<any>();
+            FabaModel.stores[name] = new storeClass;
+            return FabaModel.stores[name];
         }
+
+        if (FabaModel.stores[name]){
+            return FabaModel.stores[name];
+        }
+
+
+        return FabaModel.stores[name] = new storeClass;
     }
 }
 
