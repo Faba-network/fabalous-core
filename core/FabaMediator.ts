@@ -9,47 +9,52 @@ import FabaWebApplication from "../runtimes/FabaWebApplication";
 import FabaEvent from "./FabaEvent";
 
 export default class FabaMediator implements IFabaMediator {
-    cmdList = new Array<Object>();
+  cmdList = new Array<Object>();
 
-    constructor() {
-      if (CLIENT){
-        this.registerCommands();
+  constructor() {
+    if (CLIENT){
+      this.registerCommands();
+    }
+
+    if (SERVER){
+      this.registerServices();
+    }
+  }
+
+  addCommand(event:any, command:any) {
+    var ev = event.default;
+    var cmd = command.default;
+    var h:FabaEvent = new ev();
+
+    this.cmdList.push({event: ev, cmd: cmd, id:h.identifyer});
+    FabaWebApplication.events[h.identifyer] = ev;
+  }
+
+  updateCommand(eventName, command) {
+    this.cmdList = this.cmdList.map((md:any) => {
+      if (md){
+        if (md.event != eventName) return md;
       }
+    });
 
-      if (SERVER){
-        this.registerServices();
-      }
-    }
+    this.cmdList.push({event: eventName, cmd: command});
+    FabaWebApplication.events[eventName.name] = eventName;
+  }
 
-    addCommand(event, command) {
-      var h:FabaEvent = new event();
-      this.cmdList.push({event: event, cmd: command, id:h.identifyer});
-      FabaWebApplication.events[h.identifyer] = event;
-    }
+  addSerivce(event, service) {
+    var ev = event.default;
+    var serv = service.default;
+    var h:FabaEvent = new ev();
 
-    updateCommand(eventName, command) {
-        this.cmdList = this.cmdList.map((md:any) => {
-            if (md){
-                if (md.event != eventName) return md;
-            }
-        });
-      
-        this.cmdList.push({event: eventName, cmd: command});
-        FabaWebApplication.events[eventName.name] = eventName;
-    }
+    this.cmdList.push({event: event, cmd: serv, id:h.identifyer});
+    FabaWebApplication.events[h.identifyer] = ev;
+  }
 
-    addSerivce(event, command) {
-      var h:FabaEvent = new event();
+  registerCommands() {
 
-      this.cmdList.push({event: event, cmd: command, id:h.identifyer});
-      FabaWebApplication.events[h.identifyer] = event;
-    }
+  }
 
-    registerCommands() {
+  registerServices() {
 
-    }
-
-    registerServices() {
-
-    }
+  }
 }
