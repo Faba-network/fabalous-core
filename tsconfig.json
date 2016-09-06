@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "es6",
-        "sourceMap": false,
+        "sourceMap": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "declaration": true,
@@ -10,36 +10,8 @@
         "noLib": false,
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true,
+        "outDir": "./lib/",
         "rootDir": "./"
     },
-
-    "filesGlob": [
-        "**/*.ts",
-        "**/*.tsx"
-    ],
-
-    "rootDirs": [
-        "./"
-    ],
-
-    "paths": {
-        "*": ["*"]
-    },
-    "exclude": ["test"],
-    "files": [
-        "./core/FabaEvent.ts",
-        "./typings/tsd.d.ts",
-        "./runtimes/FabaServer.ts",
-        "./runtimes/FabaWebApplication.ts",
-        "./core/FabaService.ts",
-        "./core/FabaValueObject.ts",
-        "./core/FabaCommand.ts",
-        "./core/FabaCore.ts",
-        "./core/FabaModel.ts",
-        "./transport/FabaApiConnection.ts",
-        "./nodejs/mongodb/FabaMongoCollection.ts",
-        "./nodejs/mongodb/FabaMongoConnection.ts",
-        "./decorators/FabaBindable.ts",
-        "./core/FabaEventManager.ts"
-    ]
+    "exclude": ["test", "node_modules"]
 }
