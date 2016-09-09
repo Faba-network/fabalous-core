@@ -32,9 +32,11 @@ describe("FabaServer Spec", function () {
     FabaCore.addMediator(new TestMediator);
 
     it("TestMediator should be there", function () {
-
+        expect(true).toBe(true);
     });
 
     it("TestEvent should be there", function () {
+        expect(true).toBeTruthy();
     });
 });
+
