@@ -9,10 +9,9 @@
         "removeComments": false,
         "noLib": false,
         "preserveConstEnums": true,
-        "suppressImplicitAnyIndexErrors": true,
+        "suppressImplicitAnyIndexErrors": false,
         "outDir": "./lib/",
         "rootDir": "./"
     },
-    "exclude": ["node_modules"],
-    "files": ["typings/index.d.ts"]
+    "exclude": ["node_modules"]
 }

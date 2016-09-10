@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var jasmine = require('gulp-jasmine');
+var gulpJasmine = require('gulp-jasmine');
 var runSequence = require('run-sequence');
 var watch = require('gulp-watch');
 var webpack = require('webpack');
@@ -16,7 +16,7 @@ gulp.task('testComp', function(done) {
 
 gulp.task('testJasmine', function() {
     return gulp.src('./dist/test/node/test.js')
-        .pipe(jasmine({
+        .pipe(gulpJasmine({
             reporter: new reporters.TerminalReporter()
         }));
 });
