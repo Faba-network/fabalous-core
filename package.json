@@ -24,7 +24,7 @@
     "url": "https://github.com/Faba-network/fabalous-core/issues"
   },
   "homepage": "https://github.com/Faba-network/fabalous-core#readme",
-  "devDependencies": {
+  "dependencies": {
     "awesome-typescript-loader": "^2.0.1",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
