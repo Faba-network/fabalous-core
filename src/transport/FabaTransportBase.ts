@@ -1,4 +1,4 @@
-import FabaEvent from "FabaEvent";
+import FabaEvent from "./../FabaEvent";
 
 export default class FabaTransportBase {
     private evnid: string;

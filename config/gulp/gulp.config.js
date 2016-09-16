@@ -25,11 +25,6 @@ gulp.task('remove_node_modules_folder', function() {
         .pipe(clean());
 });
 
-gulp.task('copy_config_folder', function() {
-    return gulp.src(absolutePath + 'config/**')
-        .pipe(gulp.dest(absolutePath + 'config/'));
-});
-
 gulp.task('copy_package_json', function() {
     return gulp.src('package.json')
         .pipe(gulp.dest(absolutePath + 'lib/'));

@@ -3,6 +3,10 @@ var fs = require('fs');
 var webpack = require('webpack');
 var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 
+console.log(__workDir);
+
+var entry = ['./src/A_Server.ts'];
+
 var nodeModules = {};
 fs.readdirSync('node_modules')
     .filter(function(x) {
@@ -13,13 +17,11 @@ fs.readdirSync('node_modules')
     });
 
 module.exports = {
-    entry: [
-        './src/A_Server.ts'
-    ],
+    entry:entry,
     target:'node',
     debug: true,
     output: {
-        path: path.join(__dirname, '../../dist/node/'),
+        path: path.join(__workDir, './dist/node/'),
         filename: 'server.js'
     },
     node: {
@@ -34,7 +36,7 @@ module.exports = {
         extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
     },
 
-    recordsPath: path.join(__dirname, '../../dist/node/_records'),
+    recordsPath: path.join(__workDir, './dist/node/_records'),
 
     stats: {
         colors: true,
@@ -58,13 +60,17 @@ module.exports = {
             { test: /\.less$/, loader: 'noop-loader', exclude: /node_modules/},
             {
                 include:[
-                    path.resolve(__dirname, "../../node_modules/fabalous-core"),
-                    path.resolve(__dirname, "../../src")
+                    path.join(__workDir, './src/')
                 ],
                 test: /\.tsx?$/,
-                loader: 'babel!awesome-typescript-loader'
+                loader: 'awesome-typescript-loader'
+            },
+            {
+                test: /\.jsx?$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: 'babel'
             }
-        ]
+        ],
     },
 
     plugins:[
