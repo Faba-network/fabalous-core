@@ -3,8 +3,6 @@ var fs = require('fs');
 var webpack = require('webpack');
 var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 
-console.log(__workDir);
-
 var entry = ['./src/A_Server.ts'];
 
 var nodeModules = {};

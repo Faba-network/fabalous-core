@@ -14,15 +14,12 @@
     if Runtime_Native
 
  */
-
-
-
 import {IFabaMediator} from "./IFabaMediator";
 import FabaEvent from "./FabaEvent";
 import FabaCommand from "./FabaCommand";
-import {CLIENT, SERVER} from "./FabaCore";
 import FabaSerivce from "./FabaService";
-
+declare var SERVER;
+declare var CLIENT;
 export default class FabaMediator implements IFabaMediator {
   cmdList = [];
 
