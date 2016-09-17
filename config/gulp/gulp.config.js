@@ -15,6 +15,11 @@ gulp.task('copy_src_to_lib', function() {
         .pipe(gulp.dest(absolutePath + 'lib/'));
 });
 
+gulp.task('copy_lib_to_root', function () {
+    return gulp.src(absolutePath + 'lib/**')
+        .pipe(gulp.dest(absolutePath + '/'));
+});
+
 gulp.task('remove_src_folder', function() {
     return gulp.src(absolutePath + 'lib/src', {read: false})
         .pipe(clean());
