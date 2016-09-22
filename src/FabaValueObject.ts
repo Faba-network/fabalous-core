@@ -1,12 +1,10 @@
-import FabaModel from "./FabaModel";
+export default class FabaValueObject {
+    className: string;
 
-export default class FabaValueObject extends FabaModel {
-  className:string;
+    protected schema = {};
 
-  protected schema = {};
-
-  constructor(){
-    super();
-  }
+    constructor() {
+        super();
+    }
 
 }

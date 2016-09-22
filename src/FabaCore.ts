@@ -6,7 +6,6 @@
 
 import FabaMediator from "./FabaMediator";
 import FabaEvent from "./FabaEvent";
-import FabaModel from "./FabaModel";
 
 export interface IFabaMediatorList{
   cls:any,
@@ -17,8 +16,6 @@ export default class FabaCore{
   static mediators:Array<IFabaMediatorList> = [];
   static events:any = {};
   static vos:any = {};
-
-  static model:FabaModel;
 
   static addMediator(cls:any):boolean {
     for (var i = 0; i < FabaCore.mediators.length; i++) {

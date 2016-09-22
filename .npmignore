@@ -2,6 +2,7 @@ src
 node_modules
 .gitignore
 .idea
+typings
 test
 gulpfile.js
 npm-debug.log

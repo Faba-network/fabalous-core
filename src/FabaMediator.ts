@@ -16,10 +16,15 @@
  */
 import {IFabaMediator} from "./IFabaMediator";
 import FabaEvent from "./FabaEvent";
-declare var SERVER;
-declare var CLIENT;
+
+export interface ICmdList {
+    event: any;
+    cmd: any;
+    id: string;
+}
+
 export default class FabaMediator implements IFabaMediator {
-  cmdList = [];
+    cmdList: Array<ICmdList> = [];
 
   constructor() {
     if (CLIENT){
@@ -37,7 +42,6 @@ export default class FabaMediator implements IFabaMediator {
     var h:FabaEvent = new ev();
 
     this.cmdList.push({event: ev, cmd: cmd, id:h.identifyer});
-    //FabaWebApplication.events[h.identifyer] = ev;
   }
 
   updateCommand(eventName, command) {
@@ -47,15 +51,12 @@ export default class FabaMediator implements IFabaMediator {
       }
     });
 
-    this.cmdList.push({event: eventName, cmd: command});
+      this.cmdList.push({event: eventName, cmd: command, id: "update"});
   }
 
   addSerivce(event, service) {
-    var ev = event.default;
-    var serv = service.default;
-    var h:FabaEvent = new ev();
-
-    this.cmdList.push({event: event, cmd: serv, id:h.identifyer});
+      let identifier: string = new event.default().identifyer;
+      this.cmdList.push({event: event, cmd: service.default, id: identifier});
   }
 
   registerCommands() {

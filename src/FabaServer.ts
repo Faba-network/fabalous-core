@@ -3,28 +3,23 @@
  *
  *
  */
-import FabaCore from "./FabaCore";
+import FabaCore, {IFabaMediatorList} from "./FabaCore";
+import FabaEvent from "./FabaEvent";
 import FabaValueObject from "./FabaValueObject";
-
-import FabaDatabase from "./FabaDatabase";
 import {Application} from "~express/lib/application";
 
 export default class FabaServer extends FabaCore {
     app: Application;
-    db: FabaDatabase;
 
     express = require('express');
     assign = require('object.assign').getPolyfill();
 
     constructor() {
         super();
+        console.log('\x1Bc');
+
         this.app = this.express();
         this.startServer();
-    }
-
-    addDatabaseConnection(db:FabaDatabase) {
-        this.db = db;
-        this.db.connect();
     }
 
     parseObject(obj) {
@@ -72,9 +67,27 @@ export default class FabaServer extends FabaCore {
 
         this.app.post('/', (req: any, res: any) => {
             let body = JSON.parse(req.rawBody);
-            let currentEvent = new FabaCore.events[body.identifyer]();
-            var h: any = this.assign(currentEvent, JSON.parse(req.rawBody));
 
+            let targetEvent: FabaEvent;
+
+            // TODO: Refactor to create a list with events on startup
+            for (var i = 0; i < FabaCore.mediators.length; i++) {
+                var mediator: IFabaMediatorList = FabaCore.mediators[i];
+
+                for (var a = 0; a < mediator.mediator.cmdList.length; a++) {
+                    let cmd = mediator.mediator.cmdList[a];
+
+                    if (body.identifyer === cmd.id) {
+                        targetEvent = new cmd.event.default();
+                    }
+                }
+            }
+
+            if (!targetEvent) {
+                targetEvent = new FabaEvent(body.identifyer);
+            }
+
+            var h: any = this.assign(targetEvent, JSON.parse(req.rawBody));
             h = this.parseObject(h);
 
             h.dispatch((event) => {

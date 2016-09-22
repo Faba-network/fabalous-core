@@ -22,4 +22,8 @@ export default class FabaTransportBase {
         //data = JSON.parse(incomingMsg);
     }
 
+    public send(event: FabaEvent) {
+
+    }
+
 }

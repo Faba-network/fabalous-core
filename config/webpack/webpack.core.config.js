@@ -17,7 +17,6 @@ fs.readdirSync('node_modules')
 module.exports = {
     entry:entry,
     target:'node',
-    debug: true,
     output: {
         path: path.join(__workDir, './dist/node/'),
         filename: 'server.js'
@@ -31,7 +30,7 @@ module.exports = {
     devtool: 'source-map',
     resolve: {
         // Add `.ts` and `.tsx` as a resolvable extension.
-        extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
+        extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js']
     },
 
     recordsPath: path.join(__workDir, './dist/node/_records'),

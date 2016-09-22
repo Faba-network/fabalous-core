@@ -1,13 +1,13 @@
 {
   "name": "@fabalous/core",
-  "version": "0.2.2",
+  "version": "0.2.12",
   "description": "The Fabulous Faba MVC framework",
   "scripts": {
     "postversion": "npm run build && git push && git push --tags && npm publish",
     "build": "gulp clean && tsc && gulp copy_src_to_lib && gulp remove_src_folder && gulp remove_node_modules_folder",
     "develop": "tsc -w",
     "cleanSrc": "find . -name '*.js' -type f -delete",
-    "install": "cp -R ./lib/ ./ && rm -r ./lib "
+    "install": "cp -R ./lib/ ./ && rm -r ./lib && typings install "
   },
   "repository": {
     "type": "git",
@@ -24,9 +24,10 @@
   "bugs": {
     "url": "https://github.com/Faba-network/fabalous-core/issues"
   },
+  "typings": "./index.d.ts",
   "homepage": "https://github.com/Faba-network/fabalous-core#readme",
   "dependencies": {
-    "awesome-typescript-loader": "^2.0.1",
+    "awesome-typescript-loader": "2.1.1",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-util": "^3.0.7",

@@ -3,7 +3,7 @@ import FabaEvent from "./FabaEvent";
  * Created by creativecode on 12.01.16.
  */
 
-export interface ISynapseCommand{
+export interface IFabaCommand {
     execute(event:FabaEvent);
     result(event:FabaEvent);
     timeout(event:FabaEvent);

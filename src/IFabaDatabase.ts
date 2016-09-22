@@ -1,3 +1,3 @@
-export default class FabaDatabase{
-     connect(){};
+export interface IFabaDatabase {
+    connect();
 }

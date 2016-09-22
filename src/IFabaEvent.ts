@@ -3,5 +3,5 @@
  */
 
 
-interface ISynapseEvent{
+interface IFabaEvent {
 }

@@ -11,3 +11,13 @@ if (CLIENT){
 
 declare var System;
 export var log:any  = _logger;
+
+export var fabalog = {
+    log: function (message: any) {
+
+    },
+
+    error: function (message: any) {
+
+    }
+};
