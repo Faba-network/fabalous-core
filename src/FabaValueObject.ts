@@ -4,7 +4,7 @@ export default class FabaValueObject {
     protected schema = {};
 
     constructor() {
-        super();
+
     }
 
 }
