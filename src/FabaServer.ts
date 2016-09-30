@@ -89,10 +89,18 @@ export default class FabaServer extends FabaCore {
 
             var h: any = this.assign(targetEvent, JSON.parse(req.rawBody));
             h = this.parseObject(h);
+            h.dispatch().then((event) => {
+                try {
+                    console.log("fin");
 
-            h.dispatch((event) => {
-                console.log(event);
-                res.send(JSON.stringify(event));
+                    console.log(JSON.stringify(event));
+                    console.log("fin end");
+
+                    res.send(JSON.stringify(event));
+                } catch(e){
+                    console.error(e);
+                }
+
             });
         });
 

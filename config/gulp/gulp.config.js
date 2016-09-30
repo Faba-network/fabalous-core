@@ -41,3 +41,18 @@ gulp.task('test', function(){
     gulp.src('test/FabaServerSpec.js')
         .pipe(jasmine())
 });
+
+var babel = require('gulp-babel');
+gulp.task('babel', function(){
+    return gulp.src('lib/**/**.js')
+        .pipe(babel({
+            presets: ['es2015'],
+            plugins: ["transform-async-to-generator"]
+        }))
+        .pipe(gulp.dest('lib'));
+});
+
+gulp.task('copy_to_lingua', function() {
+    return gulp.src(absolutePath + 'lib/**/**')
+        .pipe(gulp.dest(absolutePath+"../lingua/node_modules/@fabalous/core/"));
+});

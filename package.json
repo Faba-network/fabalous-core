@@ -1,10 +1,10 @@
 {
   "name": "@fabalous/core",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "The Fabulous Faba MVC framework",
   "scripts": {
     "postversion": "npm run build && git push && git push --tags && npm publish",
-    "build": "gulp clean && tsc && gulp copy_src_to_lib && gulp remove_src_folder && gulp remove_node_modules_folder",
+    "build": "gulp clean && tsc && gulp copy_src_to_lib && gulp remove_src_folder && gulp remove_node_modules_folder && gulp babel && gulp copy_to_lingua",
     "develop": "tsc -w",
     "cleanSrc": "find . -name '*.js' -type f -delete",
     "install": "cp -R ./lib/ ./ && rm -r ./lib && typings install "
@@ -41,5 +41,10 @@
     "babel-plugin-transform-async-to-generator": "^6.8.0",
     "babel-preset-es2015": "^6.9.0"
   },
-  "readme": "README.md"
+  "readme": "README.md",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-es2017": "^6.16.0",
+    "gulp-babel": "^6.1.2"
+  }
 }

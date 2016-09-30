@@ -2,38 +2,39 @@ import FabaCore from "./FabaCore";
 
 export default class FabaEvent {
 
-  identifyer:string;
-  cbs:any;
+    identifyer: string;
+    cbs: any;
 
-  constructor(identifyer:string) {
-    this.identifyer = identifyer;
-  }
-
-  callBack(){
-    if (this.cbs) {
-      this.cbs(this);
-    }
-  }
-
-  get name():string {
-    return this.identifyer;
-  }
-
-  dispatch(calb?:any, result?:boolean):void {
-    if (calb) {
-      this.cbs = calb;
+    constructor(identifyer: string) {
+        this.identifyer = identifyer;
     }
 
-    FabaCore.dispatchEvent(this, result);
-  }
+    callBack() {
+        this.cbs(this);
+    }
 
-  delayDispatch(delay:number, calb?:any, result?:boolean):void {
-    setTimeout(()=>{
-      if (calb) {
-        this.cbs = calb;
-      }
+    get name(): string {
+        return this.identifyer;
+    }
 
-      FabaCore.dispatchEvent(this, result);
-    },delay);
-  }
+    async dispatch(calb?: any, result?: boolean): Promise<any> {
+        if (result === true) {
+            FabaCore.dispatchEvent(this, result);
+        } else {
+            return new Promise((resolve, reject)=> {
+                this.cbs = resolve;
+                FabaCore.dispatchEvent(this, result);
+            });
+        }
+    }
+
+    delayDispatch(delay: number, calb?: any, result?: boolean): void {
+        setTimeout(()=> {
+            if (calb) {
+                this.cbs = calb;
+            }
+
+            FabaCore.dispatchEvent(this, result);
+        }, delay);
+    }
 }

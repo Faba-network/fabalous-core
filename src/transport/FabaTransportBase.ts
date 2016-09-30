@@ -12,7 +12,7 @@ export default class FabaTransportBase {
     protected prepareEventToSend(event: FabaEvent, compress: boolean = true): string {
         var qId = Math.random();
 
-        this.runningQuerysNew.push({e: event, q: qId, v: 0, clb: event.callBack});
+        //this.runningQuerysNew.push({e: event, q: qId, v: 0, clb: event.callBack});
 
         var serilizedData: string = JSON.stringify(event);
         return serilizedData;
