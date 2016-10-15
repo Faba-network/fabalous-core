@@ -17,17 +17,6 @@ export default class FabaEvent {
         return this.identifyer;
     }
 
-    async dispatch(calb?: any, result?: FabaEventResultType): Promise<any> {
-        if (result === true) {
-            FabaCore.dispatchEvent(this, result);
-        } else {
-            return new Promise((resolve, reject)=> {
-                this.cbs = resolve;
-                FabaCore.dispatchEvent(this, result);
-            });
-        }
-    }
-
     delayDispatch(delay: number, calb?: any, result?: FabaEventResultType): void {
         setTimeout(()=> {
             if (calb) {
@@ -37,11 +26,19 @@ export default class FabaEvent {
             FabaCore.dispatchEvent(this, result);
         }, delay);
     }
+
+    async dispatch(calb?: any, result?: FabaEventResultType): Promise<any> {
+        return new Promise((resolve, reject)=> {
+            this.cbs = resolve;
+            FabaCore.dispatchEvent(this, result);
+        });
+    }
 }
 
 export enum FabaEventResultType{
     EXECUTE,
     RESULT,
     ERROR,
-    TIMEOUT
+    TIMEOUT,
+    OFFLINE
 }
