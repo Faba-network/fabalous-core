@@ -50,6 +50,9 @@ export default class FabaCore {
                             case FabaEventResultType.TIMEOUT:
                                 new routeItem[b].cmd().timeout(event);
                                 break;
+                            default:
+                                new routeItem[b].cmd().execute(event);
+
                         }
                     }
                 }
