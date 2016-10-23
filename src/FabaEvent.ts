@@ -31,14 +31,15 @@ export default class FabaEvent {
 
     async dispatch(calb?: any, result?: FabaEventResultType): Promise<any> | null{
         switch (result){
-            case FabaEventResultType.EXECUTE:
+            case FabaEventResultType.RESULT, FabaEventResultType.ERROR, FabaEventResultType.OFFLINE, FabaEventResultType.TIMEOUT:
+                FabaCore.dispatchEvent(this, result);
+                return null;
+
+            default:
                 return new Promise((resolve, reject)=> {
                     this.cbs = resolve;
                     FabaCore.dispatchEvent(this, result);
                 });
-            default:
-                FabaCore.dispatchEvent(this, result);
-                return null;
         }
 
     }
