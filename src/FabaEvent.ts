@@ -36,12 +36,16 @@ export default class FabaEvent {
                 FabaCore.dispatchEvent(this, result);
                 break;
 
-            default:
-                console.log("prmoise");
+            case FabaEventResultType.EXECUTE:
+                console.log("EXECUTE");
                 return new Promise((resolve, reject)=> {
                     this.cbs = resolve;
                     FabaCore.dispatchEvent(this, result);
                 });
+
+            default:
+                FabaCore.dispatchEvent(this, result);
+
         }
 
     }
