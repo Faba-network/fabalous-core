@@ -10,7 +10,9 @@ export default class FabaEvent {
     }
 
     callBack() {
-        this.cbs(this);
+        if(this.cbs){
+            this.cbs(this);
+        }
     }
 
     get name(): string {
