@@ -27,11 +27,18 @@ export default class FabaEvent {
         }, delay);
     }
 
-    async dispatch(calb?: any, result?: FabaEventResultType): Promise<any> {
-        return new Promise((resolve, reject)=> {
-            this.cbs = resolve;
-            FabaCore.dispatchEvent(this, result);
-        });
+    async dispatch(calb?: any, result?: FabaEventResultType): Promise<any> | null{
+        switch (result){
+            case FabaEventResultType.EXECUTE:
+                return new Promise((resolve, reject)=> {
+                    this.cbs = resolve;
+                    FabaCore.dispatchEvent(this, result);
+                });
+            default:
+                FabaCore.dispatchEvent(this, result);
+                return null;
+        }
+
     }
 }
 
