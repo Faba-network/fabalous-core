@@ -30,6 +30,17 @@ export default class FabaEvent {
     }
 
     async dispatch(calb?: any, result?: FabaEventResultType): Promise<any> | null{
+        if (result === FabaEventResultType.EXECUTE) {
+            return new Promise((resolve, reject)=> {
+                this.cbs = resolve;
+                FabaCore.dispatchEvent(this, result);
+            });
+        } else {
+            FabaCore.dispatchEvent(this, result);
+        }
+
+
+        /*
         switch (result){
             case FabaEventResultType.RESULT, FabaEventResultType.ERROR, FabaEventResultType.OFFLINE, FabaEventResultType.TIMEOUT:
                 console.log("result");
@@ -47,6 +58,7 @@ export default class FabaEvent {
                 FabaCore.dispatchEvent(this, result);
 
         }
+         */
 
     }
 }
