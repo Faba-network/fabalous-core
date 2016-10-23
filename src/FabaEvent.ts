@@ -34,6 +34,7 @@ export default class FabaEvent {
             case FabaEventResultType.RESULT, FabaEventResultType.ERROR, FabaEventResultType.OFFLINE, FabaEventResultType.TIMEOUT:
                 FabaCore.dispatchEvent(this, result);
                 return null;
+                break;
 
             default:
                 return new Promise((resolve, reject)=> {
