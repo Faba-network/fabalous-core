@@ -29,7 +29,7 @@ export default class FabaEvent {
         }, delay);
     }
 
-    async dispatch(calb?: any, result?: FabaEventResultType = FabaEventResultType.EXECUTE): Promise<any> | null {
+    async dispatch(calb?: any, result: FabaEventResultType = FabaEventResultType.EXECUTE): Promise<any> | null {
         if (result === FabaEventResultType.EXECUTE) {
             return new Promise((resolve, reject)=> {
                 this.cbs = resolve;
