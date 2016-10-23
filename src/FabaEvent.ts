@@ -32,11 +32,12 @@ export default class FabaEvent {
     async dispatch(calb?: any, result?: FabaEventResultType): Promise<any> | null{
         switch (result){
             case FabaEventResultType.RESULT, FabaEventResultType.ERROR, FabaEventResultType.OFFLINE, FabaEventResultType.TIMEOUT:
+                console.log("result");
                 FabaCore.dispatchEvent(this, result);
-                return null;
                 break;
 
             default:
+                console.log("prmoise");
                 return new Promise((resolve, reject)=> {
                     this.cbs = resolve;
                     FabaCore.dispatchEvent(this, result);
