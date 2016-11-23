@@ -4,7 +4,7 @@
   "description": "The Fabulous Faba MVC framework",
   "scripts": {
     "postversion": "npm run build && git push && git push --tags && npm publish",
-    "build": "gulp clean && tsc && gulp copy_src_to_lib && gulp remove_src_folder && gulp remove_node_modules_folder && gulp babel",
+    "build": "gulp clean && tsc && gulp copy_src_to_lib && gulp remove_src_folder && gulp remove_node_modules_folder",
     "develop": "tsc -w",
     "cleanSrc": "find . -name '*.js' -type f -delete",
     "install": "cp -Rf ./lib/* ./  && rm -r ./lib && typings install "
