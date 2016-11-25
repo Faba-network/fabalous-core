@@ -1,9 +1,3 @@
-/**
- * Created by joergwasmeier on 26.12.15.
- *
- *
- */
-
 import FabaMediator from "./FabaMediator";
 import FabaEvent, {FabaEventResultType} from "./FabaEvent";
 
