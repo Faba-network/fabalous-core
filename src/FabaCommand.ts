@@ -2,7 +2,7 @@ import FabaEvent from "./FabaEvent";
 import FabaCoreRuntime from "./FabaCoreRuntime";
 
 export default class FabaCommand {
-    private store: any;
+    store: any;
 
     constructor(store?: any) {
         this.store = store;
