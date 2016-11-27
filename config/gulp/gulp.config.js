@@ -35,13 +35,14 @@ gulp.task('copy_package_json', function() {
         .pipe(gulp.dest(absolutePath + 'lib/'));
 });
 
+/*
 jasmine = require('gulp-jasmine');
 
 gulp.task('test', function(){
     gulp.src('test/FabaServerSpec.js')
         .pipe(jasmine())
 });
-
+ */
 var babel = require('gulp-babel');
 gulp.task('babel', function(){
     return gulp.src('lib/**/**.js')
