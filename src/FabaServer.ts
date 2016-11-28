@@ -27,10 +27,8 @@ export default class FabaServer extends FabaCore {
             if (obj[key] != null && obj[key].className != null) {
                 let vo: FabaValueObject = obj[key];
                 try {
-
                     let neVoInst: any = new FabaCore.vos[vo.className];
                     obj[key] = this.assign(neVoInst, vo);
-
                     obj[key] = this.parseObject(obj[key]);
 
                 } catch (e) {
@@ -61,7 +59,7 @@ export default class FabaServer extends FabaCore {
             next();
         });
 
-        this.app.get('/', function (req: any, res: any) {
+        this.app.get('/test', function (req: any, res: any) {
             res.send("Hallo welt");
         });
 
@@ -91,11 +89,6 @@ export default class FabaServer extends FabaCore {
             h = this.parseObject(h);
             h.dispatch().then((event) => {
                 try {
-                    console.log("fin");
-
-                    console.log(JSON.stringify(event));
-                    console.log("fin end");
-
                     res.send(JSON.stringify(event));
                 } catch(e){
                     console.error(e);
@@ -105,7 +98,6 @@ export default class FabaServer extends FabaCore {
         });
 
         var port = 3120;
-
         this.app.listen(port);
     }
 

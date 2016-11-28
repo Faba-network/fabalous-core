@@ -1,10 +1,10 @@
 import FabaEvent from "./FabaEvent";
 import FabaCoreRuntime from "./FabaCoreRuntime";
 
-export default class FabaCommand {
-    store: any;
+export default class FabaCommand<TStore> {
+    store: TStore;
 
-    constructor(store?: any) {
+    constructor(store: TStore) {
         this.store = store;
     }
 
