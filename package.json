@@ -1,6 +1,6 @@
 {
   "name": "@fabalous/core",
-  "version": "0.2.26",
+  "version": "0.2.27",
   "description": "The Fabulous Faba MVC framework",
   "scripts": {
     "postversion": "npm run build && git push && git push --tags && npm publish",
