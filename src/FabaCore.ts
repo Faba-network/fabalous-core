@@ -13,6 +13,12 @@ export default class FabaCore {
 
     private static store: any;
 
+    static reset() {
+        FabaCore.mediators = [];
+        FabaCore.events = [];
+        FabaCore.vos = [];
+    }
+
     static addMediator(cls: any): boolean {
         for (var i = 0; i < FabaCore.mediators.length; i++) {
             var obj = FabaCore.mediators[i].cls;
