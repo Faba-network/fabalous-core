@@ -1,7 +1,7 @@
 import FabaStoreUpdateEvent from "./FabaStoreUpdateEvent";
 
 declare var require;
-const Baobab = require("Baobab");
+const Baobab = require("baobab");
 
 export default class FabaStore<TProp> {
     private bTree: any;
