@@ -15,7 +15,7 @@ export default class FabaServer extends FabaCore {
     assign = require('object.assign').getPolyfill();
 
     constructor() {
-        super();
+        super(null);
         console.log('\x1Bc');
 
         this.app = this.express();
