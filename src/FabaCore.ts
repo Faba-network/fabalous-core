@@ -1,5 +1,6 @@
 import FabaMediator from "./FabaMediator";
 import FabaEvent, {FabaEventResultType} from "./FabaEvent";
+import FabaStore from "./FabaStore";
 
 export interface IFabaMediatorList {
     cls: any,
@@ -11,7 +12,11 @@ export default class FabaCore {
     static events: any = {};
     static vos: any = {};
 
-    private static store: any;
+    private static store: FabaStore<any>;
+
+    constructor(store:FabaStore<any>){
+        FabaCore.store = store;
+    }
 
     static reset() {
         FabaCore.mediators = [];
