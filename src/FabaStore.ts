@@ -22,6 +22,7 @@ export default class FabaStore<TProp> {
         this.bData = this.cursor.get();
 
         this.cursor.on("update", (e) => {
+            this.bData = e.data.currentData;
             new FabaStoreUpdateEvent(e).dispatch();
         });
     }

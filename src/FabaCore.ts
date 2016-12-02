@@ -46,19 +46,19 @@ export default class FabaCore {
                     if (routeItem[b].id === event.name) {
                         switch (resu) {
                             case FabaEventResultType.EXECUTE:
-                                new routeItem[b].cmd(this.store).execute(event);
+                                new routeItem[b].cmd(FabaCore.store).execute(event);
                                 break;
                             case FabaEventResultType.RESULT:
-                                new routeItem[b].cmd(this.store).result(event);
+                                new routeItem[b].cmd(FabaCore.store).result(event);
                                 break;
                             case FabaEventResultType.ERROR:
-                                new routeItem[b].cmd(this.store).error(event);
+                                new routeItem[b].cmd(FabaCore.store).error(event);
                                 break;
                             case FabaEventResultType.TIMEOUT:
-                                new routeItem[b].cmd(this.store).timeout(event);
+                                new routeItem[b].cmd(FabaCore.store).timeout(event);
                                 break;
                             default:
-                                new routeItem[b].cmd(this.store).execute(event);
+                                new routeItem[b].cmd(FabaCore.store).execute(event);
 
                         }
                     }
