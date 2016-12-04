@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "es5",
         "sourceMap": true,
-      "module": "es6",
+        "module": "commonjs",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "declaration": true,
