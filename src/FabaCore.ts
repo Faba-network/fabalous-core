@@ -18,6 +18,14 @@ export default class FabaCore {
         FabaCore.store = store;
     }
 
+    static setTestStore(store: FabaStore<any>) {
+        if (TEST) {
+            FabaCore.store = store;
+        } else {
+            throw "Use this method only for Tests";
+        }
+    }
+
     static reset() {
         FabaCore.mediators = [];
         FabaCore.events = [];
