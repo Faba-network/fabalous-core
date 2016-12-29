@@ -7,7 +7,8 @@
     "build": "gulp clean && tsc && gulp copy_src_to_lib && gulp remove_src_folder && gulp remove_node_modules_folder",
     "develop": "tsc -w",
     "cleanSrc": "find . -name '*.js' -type f -delete",
-    "install": "cp -Rf ./lib/* ./  && rm -r ./lib && typings install "
+    "install": "cp -Rf ./lib/* ./  && rm -r ./lib && typings install ",
+    "test": "jest --no-cache --watch"
   },
   "repository": {
     "type": "git",
@@ -27,15 +28,45 @@
   "typings": "./index.d.ts",
   "homepage": "https://github.com/Faba-network/fabalous-core#readme",
   "dependencies": {
-    "awesome-typescript-loader": "2.1.1",
+    "awesome-typescript-loader": "^3.0.0-beta.17",
     "baobab": "^2.3.4",
+    "express": "^4.14.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-util": "^3.0.7",
     "nodemon": "^1.9.2",
     "tslint": "^3.15.1",
     "typescript": "^2.1.4",
-    "webpack": "^2.1.0-beta.25"
+    "webpack": "^2.2.0-rc.3"
   },
-  "readme": "README.md"
+  "readme": "README.md",
+  "devDependencies": {
+    "jasmine": "^2.5.2",
+    "jest": "^18.0.0",
+    "jest-cli": "^18.0.0",
+    "ts-jest": "^18.0.0"
+  },
+  "jest": {
+    "globals": {
+      "__TS_CONFIG__": "tsconfig.json"
+    },
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": ".*\\Spec.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "!src/**/*.d.ts"
+    ],
+    "coverageReporters": [
+      "lcov"
+    ],
+    "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js"
+  }
 }

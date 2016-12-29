@@ -1,4 +1,5 @@
 export interface IFabaMediator{
-    registerCommands():void;
-    registerServices():void;
+    addCommand(event:{new();}, command: {new();}):void;
+    updateCommand(event:{new();}, command: {new();}):void;
+    removeCommand(event:{new();}, command: {new();}):void;
 }

@@ -29,7 +29,7 @@ export default class FabaEvent {
         }, delay);
     }
 
-    async dispatch(calb?: any, result: FabaEventResultType = FabaEventResultType.EXECUTE): Promise<any> | null {
+    async dispatch(calb?: any, result: FabaEventResultType = FabaEventResultType.EXECUTE) : Promise<any>{
         if (result === FabaEventResultType.EXECUTE) {
             return new Promise((resolve, reject)=> {
                 this.cbs = resolve;
@@ -39,27 +39,7 @@ export default class FabaEvent {
             FabaCore.dispatchEvent(this, result);
         }
 
-
-        /*
-        switch (result){
-            case FabaEventResultType.RESULT, FabaEventResultType.ERROR, FabaEventResultType.OFFLINE, FabaEventResultType.TIMEOUT:
-                console.log("result");
-                FabaCore.dispatchEvent(this, result);
-                break;
-
-            case FabaEventResultType.EXECUTE:
-                console.log("EXECUTE");
-                return new Promise((resolve, reject)=> {
-                    this.cbs = resolve;
-                    FabaCore.dispatchEvent(this, result);
-                });
-
-            default:
-                FabaCore.dispatchEvent(this, result);
-
-        }
-         */
-
+        return null;
     }
 }
 

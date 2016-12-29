@@ -43,15 +43,6 @@ gulp.task('test', function(){
         .pipe(jasmine())
 });
  */
-var babel = require('gulp-babel');
-gulp.task('babel', function(){
-    return gulp.src('lib/**/**.js')
-        .pipe(babel({
-            presets: ['es2015'],
-            plugins: ["transform-async-to-generator"]
-        }))
-        .pipe(gulp.dest('lib'));
-});
 
 gulp.task('copy_to_lingua', function() {
     return gulp.src(absolutePath + 'lib/**/**')

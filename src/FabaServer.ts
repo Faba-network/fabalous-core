@@ -6,7 +6,7 @@
 import FabaCore, {IFabaMediatorList} from "./FabaCore";
 import FabaEvent from "./FabaEvent";
 import FabaValueObject from "./FabaValueObject";
-import {Application} from "~express/lib/application";
+import {Application} from "express/lib/application";
 
 export default class FabaServer extends FabaCore {
     app: Application;
@@ -68,16 +68,15 @@ export default class FabaServer extends FabaCore {
 
             let targetEvent: FabaEvent;
 
+
             // TODO: Refactor to create a list with events on startup
+
+            // Idee ist beim startup einene liste von events zu genereiern um einfach draufa zuzugreigen (new FabaCore.events[body.identifyer]);
             for (var i = 0; i < FabaCore.mediators.length; i++) {
-                var mediator: IFabaMediatorList = FabaCore.mediators[i];
+                const routeItem: Array<any> = FabaCore.mediators[a].mediator.cmdList;
 
-                for (var a = 0; a < mediator.mediator.cmdList.length; a++) {
-                    let cmd = mediator.mediator.cmdList[a];
+                for (let obj of routeItem[body.identifyer]) {
 
-                    if (body.identifyer === cmd.id) {
-                        targetEvent = new cmd.event.default();
-                    }
                 }
             }
 

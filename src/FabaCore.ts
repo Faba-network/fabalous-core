@@ -19,11 +19,11 @@ export default class FabaCore {
     }
 
     static setTestStore(store: FabaStore<any>) {
-        if (TEST) {
+        //if (TEST) {
             FabaCore.store = store;
-        } else {
-            throw "Use this method only for Tests";
-        }
+       // } else {
+         //   throw "Use this method only for Tests";
+       // }
     }
 
     static reset() {
@@ -46,35 +46,27 @@ export default class FabaCore {
     }
 
     static dispatchEvent(event: FabaEvent, resu?: FabaEventResultType) {
-        for (var a: number = 0; a < this.mediators.length; a++) {
-            var routeItem: Array<any> = this.mediators[a].mediator.cmdList;
+        for (let a: number = 0; a < this.mediators.length; a++) {
+            const routeItem: Array<any> = this.mediators[a].mediator.cmdList;
+            for (let obj of routeItem[event.identifyer]) {
+                switch (resu) {
+                    case FabaEventResultType.EXECUTE:
+                        new obj.cmd(FabaCore.store).execute(event);
+                        break;
+                    case FabaEventResultType.RESULT:
+                        new obj.cmd(FabaCore.store).result(event);
+                        break;
+                    case FabaEventResultType.ERROR:
+                        new obj.cmd(FabaCore.store).error(event);
+                        break;
+                    case FabaEventResultType.TIMEOUT:
+                        new obj.cmd(FabaCore.store).timeout(event);
+                        break;
+                    default:
+                        new obj.cmd(FabaCore.store).execute(event);
 
-            for (var b: number = 0; b < routeItem.length; b++) {
-                if (routeItem[b] && routeItem[b].event && routeItem[b].id) {
-                    if (routeItem[b].id === event.name) {
-                        switch (resu) {
-                            case FabaEventResultType.EXECUTE:
-                                new routeItem[b].cmd(FabaCore.store).execute(event);
-                                break;
-                            case FabaEventResultType.RESULT:
-                                new routeItem[b].cmd(FabaCore.store).result(event);
-                                break;
-                            case FabaEventResultType.ERROR:
-                                new routeItem[b].cmd(FabaCore.store).error(event);
-                                break;
-                            case FabaEventResultType.TIMEOUT:
-                                new routeItem[b].cmd(FabaCore.store).timeout(event);
-                                break;
-                            default:
-                                new routeItem[b].cmd(FabaCore.store).execute(event);
-
-                        }
-                    }
                 }
             }
         }
     }
 }
-
-export declare var CLIENT;
-export declare var SERVER;

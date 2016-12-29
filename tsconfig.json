@@ -12,15 +12,12 @@
     "preserveConstEnums": true,
     "suppressImplicitAnyIndexErrors": false,
     "outDir": "./lib/",
-    "noEmitHelpers": true,
     "rootDir": "./",
     "lib": [
-      "es6",
-      "es5"
+      "es7"
     ]
   },
   "exclude": [
-    "node_modules",
-    "test"
+    "node_modules"
   ]
 }

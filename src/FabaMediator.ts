@@ -1,69 +1,56 @@
-/*
-  Fabalos bundled with nodejs (muss os sein weil nur mit nodejs lässt sich javascript ausführen)
-  Mongodb Rthindb etc sind erweiterungen und in einem eigenen Packet
-
-  Bei Kompellierung wird nur geschaut ob service oder command
-
-   If Service
-    registerservice
-
-   IF !Service
-    if Runtime_WEB
-
-
-    if Runtime_Native
-
- */
 import {IFabaMediator} from "./IFabaMediator";
 import FabaEvent from "./FabaEvent";
 
 export interface ICmdList {
     event: any;
     cmd: any;
-    id: string;
 }
 
-export default class FabaMediator implements IFabaMediator {
-    cmdList: Array<ICmdList> = [];
+export default class FabaMediator {
+    cmdList:Array<Array<ICmdList>> = [];
 
-  constructor() {
-    if (CLIENT){
-      this.registerCommands();
+    constructor(){
+        this.registerCommands();
     }
 
-    if (SERVER){
-      this.registerServices();
+    registerCommands():void{
+        throw ("Please override register Commands");
     }
-  }
 
-  addCommand(event:any, command:any) {
-    var ev:any = event.default;
-    var cmd = command.default;
-    var h:FabaEvent = new ev();
+    addCommand(event, command) {
+        const h: FabaEvent = new event();
+        if (!this.cmdList[event.name]){
+            this.cmdList[event.name] = [];
+        }
+        this.cmdList[h.identifyer] = {event:event, commands:[]};
 
-    this.cmdList.push({event: ev, cmd: cmd, id:h.identifyer});
-  }
+        this.cmdList[h.identifyer].push({cmd:command, event:event});
+    }
 
-  updateCommand(eventName, command) {
-    this.cmdList = this.cmdList.map((md:any) => {
-      if (md){
-        if (md.event != eventName) return md;
-      }
-    });
+    updateCommand(event, oldCommand, newCommand) {
+        const h: FabaEvent = new event();
 
-      this.cmdList.push({event: eventName, cmd: command, id: "update"});
-  }
+        this.cmdList[h.identifyer].map((item:ICmdList)=>{
+            if (item.event === event && item.cmd === oldCommand){
+                item.cmd = newCommand;
+            }
+        });
+    }
 
-  addSerivce(event, service) {
-      let identifier: string = new event.default().identifyer;
-      this.cmdList.push({event: event, cmd: service.default, id: identifier});
-  }
+    removeCommand(event, command) {
+        const h: FabaEvent = new event();
+        for (let i = 0; i < this.cmdList[h.identifyer].length; i++) {
+            let obj = this.cmdList[h.identifyer][i];
 
-  registerCommands() {
+            if (obj.event === event && obj.cmd === command){
+                this.cmdList[h.identifyer].splice(i, 1);
+            }
+        }
 
-  }
+        if (this.cmdList[h.identifyer].length === 0){
+            delete this.cmdList[h.identifyer];
+        }
 
-  registerServices() {
+    }
 
-  }
 }
