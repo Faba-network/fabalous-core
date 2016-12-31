@@ -1,6 +1,6 @@
 import FabaEvent from "./FabaEvent";
 import FabaCore from "./FabaCore";
-import FabaTransportBase from "./transport/FabaTransportBase";
+import FabaTransportBase from "./transport/FabaCoreTransportBase";
 
 export interface IServerEndpoint {
     name: string;

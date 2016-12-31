@@ -3,6 +3,7 @@
   "version": "0.2.37",
   "description": "The Fabulous Faba MVC framework",
   "scripts": {
+    "localDebug": "npm run build && cp -Rf ./lib/* /Users/creativecode/Projekte/fabalous-core-servertest/node_modules/@fabalous/core/ ",
     "postversion": "npm run build && git push && git push --tags && npm publish",
     "build": "gulp clean && tsc && gulp copy_src_to_lib && gulp remove_src_folder && gulp remove_node_modules_folder",
     "develop": "tsc -w",
@@ -35,6 +36,7 @@
     "gulp-clean": "^0.3.2",
     "gulp-util": "^3.0.7",
     "nodemon": "^1.9.2",
+    "tslib": "^1.4.0",
     "tslint": "^3.15.1",
     "typescript": "^2.1.4",
     "webpack": "^2.2.0-rc.3"
@@ -53,7 +55,7 @@
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "testRegex": ".*\\Spec.(ts|tsx|js)$",
+    "testRegex": "test/.*\\Spec.(ts|tsx|js)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",

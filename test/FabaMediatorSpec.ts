@@ -1,6 +1,6 @@
-import FabaMediator from "../src/FabaMediator";
+import FabaMediator from "../src/FabaCoreMediator";
 import FabaEvent from "../src/FabaEvent";
-import FabaCommand from "../src/FabaCommand";
+import FabaCommand from "../src/FabaCoreCommand";
 import FabaCore from "../src/FabaCore";
 /**
  * Created by creativecode on 27.12.16.
@@ -51,7 +51,7 @@ describe("Mediator", ()=>{
         testMediator.addCommand(TestEvent, TestCommand);
 
         testMediator.updateCommand(TestEvent, TestCommand, TestCommand2);
-        expect(testMediator.cmdList["TestEvent"][0].cmd).toEqual(TestCommand2);
+        expect(testMediator.cmdList["TestEvent"].commands[0].cmd).toEqual(TestCommand2);
     });
 
     it("Mediator should remove a Command", function () {
@@ -70,4 +70,6 @@ describe("Mediator", ()=>{
         testMediator.removeCommand(TestEvent, TestCommand);
         expect(testMediator.cmdList["TestEvent"]).toBeDefined();
     });
+
+
 });

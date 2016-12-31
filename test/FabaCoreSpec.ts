@@ -38,29 +38,12 @@ class TestMediator extends FabaMediator {
     }
 }
 
-describe("Event Command Flow", () => {
-    it("Event should be there", function () {
-        const event = new TestEvent();
-        expect(event).toBeDefined();
-    });
+describe("Core", ()=>{
+    it("Core should generate a list of events", function () {
+        const core:FabaCore = new FabaCore(store);
+        const testMediator:TestMediator = new TestMediator();
 
-    it("Command should be there", function () {
-        const command = new TestCommand(store);
-        expect(command).toBeDefined();
-    });
-
-    it("Mediator should be registered", function () {
         FabaCore.addMediator(TestMediator);
-        expect(FabaCore.mediators.length).toBeGreaterThan(0);
-    });
-
-    fit("Test store should be true", function (done) {
-        new FabaCore(store);
-        FabaCore.addMediator(TestMediator);
-        new TestEvent().dispatch(()=>{
-        }).then(() => {
-            expect(store.data.test).toBeTruthy();
-            done();
-        });
+        expect(FabaCore.events).toBeDefined();
     });
 });

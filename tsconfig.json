@@ -5,6 +5,7 @@
     "module": "commonjs",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "importHelpers": true,
     "declaration": true,
     "noImplicitAny": false,
     "removeComments": false,

@@ -1,6 +1,8 @@
-import FabaMediator from "./FabaMediator";
+import FabaMediator from "./FabaCoreMediator";
 import FabaEvent, {FabaEventResultType} from "./FabaEvent";
 import FabaStore from "./FabaStore";
+import {IMedaitorCmd} from "./FabaCoreMediator";
+import {IMediatorCmdList} from "./FabaCoreMediator";
 
 export interface IFabaMediatorList {
     cls: any,
@@ -33,22 +35,33 @@ export default class FabaCore {
     }
 
     static addMediator(cls: any): boolean {
-        for (var i = 0; i < FabaCore.mediators.length; i++) {
-            var obj = FabaCore.mediators[i].cls;
+        for (let i = 0; i < FabaCore.mediators.length; i++) {
+            const obj = FabaCore.mediators[i].cls;
 
             if (obj == cls) {
                 return false;
             }
         }
 
-        FabaCore.mediators.push({cls: cls, mediator: new cls});
+        const mediator:FabaMediator = new cls;
+
+        for (let item in mediator.cmdList) {
+            if (FabaCore.events[item]){
+                FabaCore.events[item].commands = FabaCore.events[item].commands.concat(mediator.cmdList[item].commands);
+            } else {
+                FabaCore.events[item] = {event:mediator.cmdList[item].event, commands:mediator.cmdList[item].commands};
+            }
+        }
+
+        FabaCore.mediators.push({cls: cls, mediator: mediator});
+        
         return true;
     }
 
     static dispatchEvent(event: FabaEvent, resu?: FabaEventResultType) {
         for (let a: number = 0; a < this.mediators.length; a++) {
-            const routeItem: Array<any> = this.mediators[a].mediator.cmdList;
-            for (let obj of routeItem[event.identifyer]) {
+            const routeItem: Array<IMediatorCmdList> = this.mediators[a].mediator.cmdList;
+            for (let obj of routeItem[event.identifyer].commands) {
                 switch (resu) {
                     case FabaEventResultType.EXECUTE:
                         new obj.cmd(FabaCore.store).execute(event);
@@ -64,7 +77,6 @@ export default class FabaCore {
                         break;
                     default:
                         new obj.cmd(FabaCore.store).execute(event);
-
                 }
             }
         }

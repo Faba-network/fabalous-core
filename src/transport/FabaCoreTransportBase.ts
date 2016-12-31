@@ -1,6 +1,6 @@
 import FabaEvent from "./../FabaEvent";
 
-export default class FabaTransportBase {
+export default class FabaCoreTransportBase {
     private evnid: string;
 
     private runningQuerysNew: Array<any> = [];
