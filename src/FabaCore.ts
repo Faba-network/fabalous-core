@@ -34,7 +34,7 @@ export default class FabaCore {
         FabaCore.vos = [];
     }
 
-    static addMediator(cls: any): boolean {
+    static addMediator(cls: typeof FabaMediator): boolean {
         for (let i = 0; i < FabaCore.mediators.length; i++) {
             const obj = FabaCore.mediators[i].cls;
 

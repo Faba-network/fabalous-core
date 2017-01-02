@@ -5,7 +5,7 @@ export default class FabaEvent {
     identifyer: string;
     cbs: any;
 
-    constructor(identifyer: string) {
+    constructor(identifyer?: string) {
         this.identifyer = identifyer;
     }
 

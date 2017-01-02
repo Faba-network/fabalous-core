@@ -1,7 +1,6 @@
 var path = require('path');
 var fs = require('fs');
 var webpack = require('webpack');
-var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 
 var entry = ['./src/A_Server.ts'];
 
@@ -68,7 +67,6 @@ module.exports = {
 
     plugins:[
         new webpack.NormalModuleReplacementPlugin(/\.(gif|png|less|css)$/, 'node-noop'),
-        new ForkCheckerPlugin(),
         new webpack.DefinePlugin({
             CLIENT: false,
             SERVER: true,

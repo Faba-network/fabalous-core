@@ -1,5 +1,6 @@
 import {IFabaMediator} from "./IFabaMediator";
 import FabaEvent from "./FabaEvent";
+import FabaCoreCommand from "./FabaCoreCommand";
 
 export interface IMediatorCmdList {
     event: FabaEvent;
@@ -22,7 +23,7 @@ export default class FabaCoreMediator {
         throw ("Please override register Commands");
     }
 
-    addCommand(event, command) {
+    addCommand(event: typeof FabaEvent, command: typeof FabaCoreCommand) {
         const h: FabaEvent = new event();
         if (!this.cmdList[event.name]){
             this.cmdList[h.identifyer] = {event:event, commands:[]};
@@ -31,7 +32,7 @@ export default class FabaCoreMediator {
         this.cmdList[h.identifyer].commands.push({cmd:command, options:{}});
     }
 
-    updateCommand(event, oldCommand, newCommand) {
+    updateCommand(event: typeof FabaEvent, oldCommand:typeof FabaCoreCommand, newCommand:typeof FabaCoreCommand) {
         const h: FabaEvent = new event();
         
         this.cmdList[h.identifyer].commands.map((item:IMedaitorCmd)=>{
@@ -41,7 +42,7 @@ export default class FabaCoreMediator {
         });
     }
 
-    removeCommand(event, command) {
+    removeCommand(event: typeof FabaEvent, command:typeof FabaCoreCommand) {
         const h: FabaEvent = new event();
         for (let i = 0; i < this.cmdList[h.identifyer].commands.length; i++) {
             let obj = this.cmdList[h.identifyer].commands[i];

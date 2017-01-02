@@ -3,7 +3,7 @@
   "version": "0.2.38",
   "description": "The Fabulous Faba MVC framework",
   "scripts": {
-    "localDebug": "npm run build && cp -Rf ./lib/* /Users/creativecode/Projekte/fabalous-core-servertest/node_modules/@fabalous/core/ ",
+    "localDebug": "npm run build && cp -Rf ./lib/* /Users/creativecode/Projekte/fabalous-runtime-node/node_modules/@fabalous/core/ ",
     "postversion": "npm run build && git push && git push --tags && npm publish",
     "build": "gulp clean && tsc && gulp copy_src_to_lib && gulp remove_src_folder && gulp remove_node_modules_folder",
     "develop": "tsc -w",
@@ -29,7 +29,7 @@
   "typings": "./index.d.ts",
   "homepage": "https://github.com/Faba-network/fabalous-core#readme",
   "dependencies": {
-    "awesome-typescript-loader": "^3.0.0-beta.17",
+    "awesome-typescript-loader": "3.0.0-beta.9",
     "baobab": "^2.3.4",
     "express": "^4.14.0",
     "gulp": "^3.9.1",
