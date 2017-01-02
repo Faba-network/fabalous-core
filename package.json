@@ -1,6 +1,6 @@
 {
   "name": "@fabalous/core",
-  "version": "0.2.43",
+  "version": "0.2.44",
   "description": "The Fabulous Faba MVC framework",
   "scripts": {
     "localDebug": "npm run build && cp -Rf ./lib/* /Users/creativecode/Projekte/fabalous-runtime-node/node_modules/@fabalous/core/ ",
