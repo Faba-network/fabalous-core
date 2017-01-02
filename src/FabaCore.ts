@@ -61,22 +61,24 @@ export default class FabaCore {
     static dispatchEvent(event: FabaEvent, resu?: FabaEventResultType) {
         for (let a: number = 0; a < this.mediators.length; a++) {
             const routeItem: Array<IMediatorCmdList> = this.mediators[a].mediator.cmdList;
-            for (let obj of routeItem[event.identifyer].commands) {
-                switch (resu) {
-                    case FabaEventResultType.EXECUTE:
-                        new obj.cmd(FabaCore.store).execute(event);
-                        break;
-                    case FabaEventResultType.RESULT:
-                        new obj.cmd(FabaCore.store).result(event);
-                        break;
-                    case FabaEventResultType.ERROR:
-                        new obj.cmd(FabaCore.store).error(event);
-                        break;
-                    case FabaEventResultType.TIMEOUT:
-                        new obj.cmd(FabaCore.store).timeout(event);
-                        break;
-                    default:
-                        new obj.cmd(FabaCore.store).execute(event);
+            if (routeItem && routeItem[event.identifyer]){
+                for (let obj of routeItem[event.identifyer].commands) {
+                    switch (resu) {
+                        case FabaEventResultType.EXECUTE:
+                            new obj.cmd(FabaCore.store).execute(event);
+                            break;
+                        case FabaEventResultType.RESULT:
+                            new obj.cmd(FabaCore.store).result(event);
+                            break;
+                        case FabaEventResultType.ERROR:
+                            new obj.cmd(FabaCore.store).error(event);
+                            break;
+                        case FabaEventResultType.TIMEOUT:
+                            new obj.cmd(FabaCore.store).timeout(event);
+                            break;
+                        default:
+                            new obj.cmd(FabaCore.store).execute(event);
+                    }
                 }
             }
         }
