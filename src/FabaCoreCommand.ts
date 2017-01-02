@@ -6,4 +6,8 @@ export default class FabaCoreCommand<TStore> {
     constructor(store) {
         this.store = store;
     }
+
+    get data() {
+        return this.store.data;
+    }
 }
