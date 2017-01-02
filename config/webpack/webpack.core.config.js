@@ -54,7 +54,6 @@ module.exports = {
 
     module: {
         loaders: [
-            { test: /\.less$/, loader: 'noop-loader', exclude: /node_modules/},
             {
                 include:[
                     path.join(__workDir, './src/')
