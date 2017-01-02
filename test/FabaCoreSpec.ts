@@ -21,7 +21,7 @@ class TestEvent extends FabaEvent {
 
 class TestCommand extends FabaCommand<Store> {
     execute(event: TestEvent) {
-        this.data.test = true;
+        //this.data.test = true;
     }
 }
 
