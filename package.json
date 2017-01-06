@@ -8,7 +8,7 @@
     "build": "gulp clean && tsc && gulp copy_src_to_lib && gulp remove_src_folder && gulp remove_node_modules_folder",
     "develop": "tsc -w",
     "cleanSrc": "find . -name '*.js' -type f -delete",
-    "install": "cp -Rf ./lib/* ./  && rm -r ./lib && typings install ",
+    "install": "cp -Rf ./lib/* ./  && rm -r ./lib",
     "test": "jest --no-cache --watch"
   },
   "repository": {
@@ -29,6 +29,8 @@
   "typings": "./index.d.ts",
   "homepage": "https://github.com/Faba-network/fabalous-core#readme",
   "dependencies": {
+    "@types/node": "^6.0.57",
+    "@types/systemjs": "^0.19.33",
     "awesome-typescript-loader": "3.0.0-beta.17",
     "baobab": "^2.3.4",
     "express": "^4.14.0",
@@ -38,12 +40,11 @@
     "nodemon": "^1.9.2",
     "tslib": "^1.4.0",
     "tslint": "^3.15.1",
-    "typescript": "^2.1.4",
+    "typescript": "2.1.4",
     "webpack": "^2.2.0-rc.3"
   },
   "readme": "README.md",
   "devDependencies": {
-    "jasmine": "^2.5.2",
     "jest": "^18.0.0",
     "jest-cli": "^18.0.0",
     "ts-jest": "^18.0.0"
