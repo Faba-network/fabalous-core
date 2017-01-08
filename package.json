@@ -1,6 +1,6 @@
 {
   "name": "@fabalous/core",
-  "version": "0.2.47",
+  "version": "0.2.48",
   "description": "The Fabulous Faba MVC framework",
   "scripts": {
     "localDebug": "npm run build && cp -Rf ./lib/* /Users/creativecode/Projekte/fabalous-runtime-node/node_modules/@fabalous/core/ ",
@@ -43,7 +43,6 @@
     "typescript": "2.1.4",
     "webpack": "^2.2.0-rc.3",
     "shx": "^0.2.2"
-
   },
   "readme": "README.md",
   "devDependencies": {
