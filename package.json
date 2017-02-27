@@ -31,7 +31,7 @@
     "@types/node": "^6.0.57",
     "@types/systemjs": "^0.19.33",
     "awesome-typescript-loader": "3.0.0-beta.18",
-    "baobab": "^2.4.0",
+    //"baobab": "^2.4.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-util": "^3.0.7",
