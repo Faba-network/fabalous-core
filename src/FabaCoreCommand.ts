@@ -1,7 +1,7 @@
 import FabaStore from "./FabaStore";
 
 export default class FabaCoreCommand<TStore> {
-    store: FabaStore<TStore>;
+    store: any;
 
     constructor(store) {
         this.store = store;
