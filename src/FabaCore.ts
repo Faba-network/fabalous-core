@@ -17,7 +17,7 @@ export default class FabaCore {
     private static store: FabaStore<any>;
 
     constructor(store:FabaStore<any>){
-        FabaCore.store = store;
+        if (!FabaCore.store) FabaCore.store = store;
     }
 
     static setTestStore(store: FabaStore<any>) {
