@@ -1,13 +1,13 @@
+import FabaImmutableStore from "./FabaImmutableStore";
 import FabaStore from "./FabaStore";
-
 export default class FabaCoreCommand<TStore> {
-    store: any;
+    store:FabaImmutableStore<TStore> | FabaStore<TStore>;
 
-    constructor(store) {
+    constructor(store : FabaImmutableStore<TStore> | FabaStore<TStore>) {
         this.store = store;
     }
 
-    get data() {
+    get data() : TStore  {
         return this.store.data;
     }
 }

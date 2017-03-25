@@ -1,3 +1,3 @@
 export interface IFabaDatabase {
-    connect();
+    connect():void;
 }

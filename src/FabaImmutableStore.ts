@@ -1,8 +1,13 @@
 import FabaStoreUpdateEvent from "./FabaStoreUpdateEvent";
 import FabaStore from "./FabaStore";
 
-declare var require;
 const Baobab = require("baobab");
+
+interface IBaobabUpdate{
+    data: {
+        currentData:Object;
+    };
+}
 
 export default class FabaImmutableStore<TProp> extends FabaStore<TProp> {
     private bTree: any;
@@ -24,7 +29,7 @@ export default class FabaImmutableStore<TProp> extends FabaStore<TProp> {
         this.cursor = this.tree.select();
         this.bData = this.cursor.get();
 
-        this.cursor.on("update", (e) => {
+        this.cursor.on("update", (e:IBaobabUpdate) => {
             this.bData = e.data.currentData;
             new FabaStoreUpdateEvent(e).dispatch();
         });
@@ -33,6 +38,10 @@ export default class FabaImmutableStore<TProp> extends FabaStore<TProp> {
     set(path: string, value: any, update: boolean = true) {
         let arrPath = path.split(".");
         this.cursor.set(arrPath, value);
+    }
+
+    duplicate(){
+
     }
 }
 

@@ -11,9 +11,13 @@ export interface IMedaitorCmd {
     event: any;
     cmd: any;
 }
+export interface INameToValueMap extends Object
+{
+    [key: string]: any;
+}
 
 export default class FabaCoreMediator {
-    cmdList:Array<IMediatorCmdList> = [];
+    cmdList:INameToValueMap = {};
 
     constructor(){
         this.registerCommands();

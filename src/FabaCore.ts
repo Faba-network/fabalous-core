@@ -1,21 +1,51 @@
-import FabaMediator from "./FabaCoreMediator";
+import FabaMediator, {INameToValueMap} from "./FabaCoreMediator";
 import FabaEvent, {FabaEventResultType} from "./FabaEvent";
 import FabaStore from "./FabaStore";
-import {IMedaitorCmd} from "./FabaCoreMediator";
 import {IMediatorCmdList} from "./FabaCoreMediator";
 
+/**
+ * Fabalous Core Class
+ *
+ * Stores Mediators, Events and Vo's
+ *
+ * Handel's also the EventDispatching.
+ */
 export interface IFabaMediatorList {
     cls: any,
     mediator: FabaMediator
 }
 
+/**
+ * Dismissed module comment.
+ * This is the longer comment but will be dismissed in favor of the preferred comment.
+ */
 export default class FabaCore {
+    /*
+    List of Mediators
+     */
     static mediators: Array<IFabaMediatorList> = [];
+
+    /*
+     List of Events (Obsulete?)
+     */
     static events: any = {};
+
+    /*
+     List of Vo's (Obsulete?)
+     */
     static vos: any = {};
 
+
+    /*
+    The source of truth
+     */
     private static store: FabaStore<any>;
 
+    /**
+     * Comment for method ´doSomething´.
+     * @param target  Comment for parameter ´target´.
+     * @returns       Comment for return value.
+     */
     constructor(store:FabaStore<any>){
         if (!FabaCore.store) FabaCore.store = store;
     }
@@ -60,7 +90,7 @@ export default class FabaCore {
 
     static dispatchEvent(event: FabaEvent, resu?: FabaEventResultType) {
         for (let a: number = 0; a < this.mediators.length; a++) {
-            const routeItem: Array<IMediatorCmdList> = this.mediators[a].mediator.cmdList;
+            const routeItem: INameToValueMap = this.mediators[a].mediator.cmdList;
             if (routeItem && routeItem[event.identifyer]){
                 for (let obj of routeItem[event.identifyer].commands) {
                     switch (resu) {
