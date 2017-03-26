@@ -12,14 +12,12 @@ gulp.task("typedoc", function() {
             includeDeclarations: true,
 
             // Output options (see typedoc docs)
-            out: "./out",
-            json: "output/to/file.json",
+            out: "./doc",
 
             // TypeDoc options (see typedoc docs)
-            name: "my-project",
+            name: "Fabalous Core",
             ignoreCompilerErrors: true,
             version: true,
             excludeExternals:true
-        }))
-        ;
+        }));
 });

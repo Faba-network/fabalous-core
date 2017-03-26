@@ -6,9 +6,20 @@ All Code in this package need to be abstract and need to be executabel in every 
 Please notice that the the client runtime's are splitted in different Packages.
 
 ## How to use
+You can use this Pacakge just by install it with NPM or YARN
+ 
+npm install @fabalous/fabalous-core --save-dev
+
+or
+
+yarn install @fabalous/fabalous-core --save-dev
+
+After that you would like to extend the FabaCore or FabaCoreRuntime Class.
 
 ## Api Documentation
+You can find the Api Documentation in the doc folder or under: http://fabalous.faba.de/docs/core/
 
 ## Change-log
+
 
 ## Build and Testing

@@ -35,15 +35,6 @@ gulp.task('copy_package_json', function() {
         .pipe(gulp.dest(absolutePath + 'lib/'));
 });
 
-/*
-jasmine = require('gulp-jasmine');
-
-gulp.task('test', function(){
-    gulp.src('test/FabaServerSpec.js')
-        .pipe(jasmine())
-});
- */
-
 gulp.task('copy_to_lingua', function() {
     return gulp.src(absolutePath + 'lib/**/**')
         .pipe(gulp.dest(absolutePath+"../lingua/node_modules/@fabalous/core/"));
