@@ -3,6 +3,4 @@
 lib
 node_modules
 npm-debug.log
-.DS_Store
-typings
-
+**/**.DS_Store
