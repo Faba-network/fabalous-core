@@ -1,14 +1,14 @@
-Fabalous Core
+#Fabalous - The MVC / Flux / Isomorph - YAFS
+This is the Core pacakge for the Fabalous Framework. Use this Package if you want to create a new Runtime.
 
-Fabalous Core library for developing NodeJS and Client applications.
+## Introduction
+All Code in this package need to be abstract and need to be executabel in every Enviroment.
+Please notice that the the client runtime's are splitted in different Packages.
 
-The client runtime are slitted in diffrent Packgages.
+## How to use
 
+## Api Documentation
 
-// TODO
+## Change-log
 
-Gulp bereinigen
-- clean lib
-- tsc kompelieren in lib
-- bable über lib
-- delete node modules
+## Build and Testing
