@@ -1,4 +1,4 @@
-#Fabalous - The MVC / Flux / Isomorph - YAFS
+# Fabalous - The MVC / Flux / Isomorph - YAFS
 This is the Core pacakge for the Fabalous Framework. Use this Package if you want to create a new Runtime.
 
 ## Introduction
