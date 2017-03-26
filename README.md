@@ -23,3 +23,5 @@ You can find the Api Documentation in the doc folder or under: http://fabalous.f
 
 
 ## Build and Testing
+Please Notice that you need to remove in the package.json the install script if you clone this repo and run npm install else you will get an error.
+
