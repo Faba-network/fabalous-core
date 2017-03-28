@@ -10,11 +10,12 @@ import {IMediatorCmdList} from "./FabaCoreMediator";
  *
  * Handel's also the EventDispatching.
  */
+
 export interface IFabaMediatorList {
     cls: any,
     mediator: FabaMediator
 }
-
+ 
 /**
  * Dismissed module comment.
  * This is the longer comment but will be dismissed in favor of the preferred comment.
@@ -26,12 +27,12 @@ export default class FabaCore {
     static mediators: Array<IFabaMediatorList> = [];
 
     /*
-     List of Events (Obsulete?)
+     * @param events List of Events (Obsulete?)
      */
     static events: any = {};
 
     /*
-     List of Vo's (Obsulete?)
+     * List of Vo's (Obsulete?)
      */
     static vos: any = {};
 
@@ -42,9 +43,8 @@ export default class FabaCore {
     private static store: FabaStore<any>;
 
     /**
-     * Comment for method ´doSomething´.
-     * @param target  Comment for parameter ´target´.
-     * @returns       Comment for return value.
+     * Core class
+     * @param store accepts one single Store "The source of true". If the store is already set the new one would not be used.
      */
     constructor(store:FabaStore<any>){
         if (!FabaCore.store) FabaCore.store = store;
@@ -58,12 +58,21 @@ export default class FabaCore {
        // }
     }
 
+
+    /**
+     * Reset mediators / Events and Vo's dictornary (usefull for HMR)
+     */
     static reset() {
         FabaCore.mediators = [];
         FabaCore.events = [];
         FabaCore.vos = [];
     }
 
+
+    /**
+     * Add Mediator if the Mediator not already exist in the Dictornary
+     * @param cls MediatorClass
+     */
     static addMediator(cls: typeof FabaMediator): boolean {
         for (let i = 0; i < FabaCore.mediators.length; i++) {
             const obj = FabaCore.mediators[i].cls;
@@ -87,6 +96,12 @@ export default class FabaCore {
         
         return true;
     }
+
+     /**
+     * Go thorugh the routes and create the command and execute
+     * @param event FabaEvents
+     * @param resu FabaEventResultType
+     */
 
     static dispatchEvent(event: FabaEvent, resu?: FabaEventResultType) {
         for (let a: number = 0; a < this.mediators.length; a++) {

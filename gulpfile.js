@@ -14,6 +14,8 @@ gulp.task("typedoc", function() {
             // Output options (see typedoc docs)
             out: "./doc",
 
+            theme : "./docTemplate",
+
             // TypeDoc options (see typedoc docs)
             name: "Fabalous Core",
             ignoreCompilerErrors: true,
