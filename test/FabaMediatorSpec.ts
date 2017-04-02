@@ -1,10 +1,6 @@
 import FabaMediator from "../src/FabaCoreMediator";
 import FabaEvent from "../src/FabaEvent";
 import FabaCommand from "../src/FabaCoreCommand";
-import FabaCore from "../src/FabaCore";
-/**
- * Created by creativecode on 27.12.16.
- */
 
 class store{
 

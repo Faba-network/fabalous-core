@@ -9,6 +9,10 @@ interface IBaobabUpdate{
     };
 }
 
+export interface IFabaImmutableStoreOptions{
+    immutable:boolean
+}
+
 /**
  * Immutable store used by every Command (Register the store in Core / Runtime)
  */
@@ -36,16 +40,23 @@ export default class FabaImmutableStore<TProp> extends FabaStore<TProp> {
     /**
      *
      * @param jsonObject
+     * @param options
      */
-    constructor(jsonObject: any, options?:any) {
+    constructor(jsonObject: any, options?:IFabaImmutableStoreOptions) {
         super();
-        options = (options) ? options : {immutable:false};
+        let opt = (options) ? options : {immutable:true};
 
-        this.bTree = new Baobab(jsonObject, options);
+        this.bTree = new Baobab(jsonObject, opt);
         this.cursor = this.tree.select();
         this.bData = this.cursor.get();
 
+        this.bTree.on("update", (e:IBaobabUpdate) => {
+            console.log("update");
+            console.log(e);
+        });
+
         this.cursor.on("update", (e:IBaobabUpdate) => {
+            console.log("update");
             this.bData = e.data.currentData;
             new FabaStoreUpdateEvent(e).dispatch();
         });

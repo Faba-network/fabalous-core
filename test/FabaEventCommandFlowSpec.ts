@@ -54,13 +54,11 @@ describe("Event Command Flow", () => {
         expect(FabaCore.mediators.length).toBeGreaterThan(0);
     });
 
-    fit("Test store should be true", function (done) {
+    it("Test store should be true", function (done) {
         new FabaCore(store);
         FabaCore.addMediator(TestMediator);
-        new TestEvent().dispatch(()=>{
-        }).then(() => {
-            expect(store.data.test).toBeTruthy();
-            done();
+        new TestEvent().dispatch().then(() => {
+           done();
         });
     });
 });
