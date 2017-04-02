@@ -30,7 +30,6 @@ class TestCommand extends FabaCommand<Store> {
 
 class TestCommand2 extends FabaCommand<Store> {
     execute(event: TestEvent) {
-        console.log(event);
         event.cbs();
     }
 }
