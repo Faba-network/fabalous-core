@@ -1,6 +1,6 @@
 import FabaMediator, {INameToValueMap} from "./FabaCoreMediator";
 import FabaEvent, {FabaEventResultType} from "./FabaEvent";
-import FabaStore from "./FabaStore";
+import FabaStore from "./store/FabaStore";
 import {IMediatorCmdList} from "./FabaCoreMediator";
 
 /**

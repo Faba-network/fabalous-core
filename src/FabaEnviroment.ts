@@ -1,4 +1,5 @@
 /**
- * Created by creativecode on 27.12.16.
+ * Enviroment vars
+ * @type {boolean}
  */
-process.env.FABA_DEBUG = true;
+ process.env.FABA_DEBUG = true;

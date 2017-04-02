@@ -2,7 +2,7 @@ import FabaMediator from "../src/FabaCoreMediator";
 import FabaEvent from "../src/FabaEvent";
 import FabaCommand from "../src/FabaCoreCommand";
 import FabaCore from "../src/FabaCore";
-import FabaStore from "../src/FabaStore";
+import FabaStore from "../src/store/FabaStore";
 
 /**
  * Created by creativecode on 29.12.16.

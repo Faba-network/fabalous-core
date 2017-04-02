@@ -1,4 +1,4 @@
-import FabaStoreUpdateEvent from "./FabaStoreUpdateEvent";
+import FabaStoreUpdateEvent from "../event/FabaStoreUpdateEvent";
 import FabaStore from "./FabaStore";
 
 const Baobab = require("baobab");
