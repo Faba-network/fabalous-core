@@ -1,10 +1,12 @@
+import { IFabaCoreTransportBase } from "./IFabaCoreTransportBase";
 import FabaEvent from "./../FabaEvent";
 
 /**
- * This class is used by all Fabalous Endpoints ansd should be extended by a new Transport method like Rest or Websocket.
+ * This class is used by all Fabalous Endpoints and should be extended by a new Transport method like Rest or Websocket.
  */
-export default class FabaCoreTransportBase {
-    /** TODO: Check if needed
+export default class FabaCoreTransportBase implements IFabaCoreTransportBase {
+    /* TODO: Check if needed */
+    
     private evnid: string;
     private runningQuerysNew: Array<any> = [];
     private runningQuerys: Array<any>;
@@ -33,7 +35,7 @@ export default class FabaCoreTransportBase {
      * Need to Override
      * @param incomingMsg
      */
-    protected messageHandler(incomingMsg: any): void {
+    public messageHandler(incomingMsg: any): void {
         //data = JSON.parse(incomingMsg);
     }
 
