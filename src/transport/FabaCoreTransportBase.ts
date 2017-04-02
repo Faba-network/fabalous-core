@@ -1,4 +1,3 @@
-import { IFabaCoreTransportBase } from "./IFabaCoreTransportBase";
 import FabaEvent from "./../FabaEvent";
 
 /**
@@ -46,4 +45,12 @@ export default class FabaCoreTransportBase implements IFabaCoreTransportBase {
     public send(event: FabaEvent) {
     }
 
+}
+
+/**
+ ** Implementation of FabaCoreTransportBase
+ **/
+export interface IFabaCoreTransportBase {
+    messageHandler(incomingMsg: any):void;
+    send(event: FabaEvent):void;
 }
