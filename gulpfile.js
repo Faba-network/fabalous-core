@@ -4,7 +4,7 @@ var typedoc = require("gulp-typedoc");
 var gulp = require('gulp');
 gulp.task("typedoc", function() {
     return gulp
-        .src(["src/*.ts"])
+        .src(["src/*.ts", "src/transport/*.ts", "src/store/*.ts", "src/event/*.ts"])
         .pipe(typedoc({
             // TypeScript options (see typescript docs)
             module: "commonjs",
@@ -14,7 +14,7 @@ gulp.task("typedoc", function() {
             // Output options (see typedoc docs)
             out: "./doc",
 
-            theme : "./docTemplate",
+            //theme : "./docTemplate",
 
             // TypeDoc options (see typedoc docs)
             name: "Fabalous Core",

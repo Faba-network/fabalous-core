@@ -1,6 +1,6 @@
 {
   "name": "@fabalous/core",
-  "version": "0.2.56",
+  "version": "0.2.57",
   "description": "The Fabulous Faba MVC framework",
   "scripts": {
     "localDebug": "npm run build && cp -Rf ./lib/* /Users/creativecode/Projekte/fabalous-runtime-node/node_modules/@fabalous/core/ ",
@@ -9,7 +9,8 @@
     "develop": "tsc -w",
     "cleanSrc": "find . -name '*.js' -type f -delete",
     "install": "shx cp -Rf ./lib/* ./ && shx rm -r ./lib",
-    "test": "jest --no-cache --watch",
+    "test": "jest --watch",
+    "coverage": "jest --no-cache --watch --coverage",
     "doc": "gulp typedoc"
   },
   "repository": {
@@ -45,7 +46,7 @@
     "jest": "^19.0.2",
     "jest-cli": "^19.0.2",
     "ts-jest": "^19.0.4",
-    "tslint": "^4.5.1",
+    "tslint": "^5.0.0",
     "typedoc": "^0.5.9"
   },
   "jest": {
@@ -55,7 +56,7 @@
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "testRegex": "test/.*\\Spec.(ts|tsx|js)$",
+    "testRegex": "test/.*\\Spec.(ts|tsx)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",

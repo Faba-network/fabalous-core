@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">Fabalous Core</a>
+					<a href="../index.html" class="title">Oleee Fabalous Core</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -91,25 +91,19 @@
 						<a href="../modules/_fabaevent_.html">"<wbr>Faba<wbr>Event"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_fabaimmutablestore_.html">"<wbr>Faba<wbr>Immutable<wbr>Store"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_fabastore_.html">"<wbr>Faba<wbr>Store"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_fabastoreupdateevent_.html">"<wbr>Faba<wbr>Store<wbr>Update<wbr>Event"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
 						<a href="../modules/_fabavalueobject_.html">"<wbr>Faba<wbr>Value<wbr>Object"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_ifabadatabase_.html">"IFaba<wbr>Database"</a>
+						<a href="../modules/_event_fabastoreupdateevent_.html">"event/<wbr>Faba<wbr>Store<wbr>Update<wbr>Event"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_ifabaevent_.html">"IFaba<wbr>Event"</a>
+						<a href="../modules/_store_fabaimmutablestore_.html">"store/<wbr>Faba<wbr>Immutable<wbr>Store"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_ifabamediator_.html">"IFaba<wbr>Mediator"</a>
+						<a href="../modules/_store_fabastore_.html">"store/<wbr>Faba<wbr>Store"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_transport_fabacoretransportbase_.html">"transport/<wbr>Faba<wbr>Core<wbr>Transport<wbr>Base"</a>
 					</li>
 				</ul>
 			</nav>
@@ -143,6 +137,9 @@
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/_fabacoremediator_.ifabacoremediator.html" class="tsd-kind-icon">IFaba<wbr>Core<wbr>Mediator</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/_fabacoremediator_.imedaitorcmd.html" class="tsd-kind-icon">IMedaitor<wbr>Cmd</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
@@ -155,12 +152,26 @@
 			</nav>
 		</div>
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>FabaCoreMediator should be extended by any Runtime</p>
+					</div>
+					<p>Add / Remove and Update all commands</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
 						<span class="target">FabaCoreMediator</span>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/_fabacoremediator_.ifabacoremediator.html" class="tsd-signature-type">IFabaCoreMediator</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -203,9 +214,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Faba-network/fabalous-core/blob/d52e38f/src/FabaCoreMediator.ts#L20">FabaCoreMediator.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/Faba-network/fabalous-core/blob/048a21d/src/FabaCoreMediator.ts#L39">FabaCoreMediator.ts:39</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Call the &quot;registerCommands&quot; function after create</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_fabacoremediator_.fabacoremediator.html" class="tsd-signature-type">FabaCoreMediator</a></h4>
 						</li>
 					</ul>
@@ -219,7 +235,7 @@
 					<div class="tsd-signature tsd-kind-icon">cmd<wbr>List<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_fabacoremediator_.inametovaluemap.html" class="tsd-signature-type">INameToValueMap</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Faba-network/fabalous-core/blob/d52e38f/src/FabaCoreMediator.ts#L20">FabaCoreMediator.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/Faba-network/fabalous-core/blob/048a21d/src/FabaCoreMediator.ts#L39">FabaCoreMediator.ts:39</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -235,10 +251,16 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_fabacoremediator_.ifabacoremediator.html">IFabaCoreMediator</a>.<a href="../interfaces/_fabacoremediator_.ifabacoremediator.html#addcommand">addCommand</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Faba-network/fabalous-core/blob/d52e38f/src/FabaCoreMediator.ts#L30">FabaCoreMediator.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/Faba-network/fabalous-core/blob/048a21d/src/FabaCoreMediator.ts#L61">FabaCoreMediator.ts:61</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add command and event to the Mediator</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -246,6 +268,8 @@
 								</li>
 								<li>
 									<h5>command: <a href="_fabacorecommand_.fabacorecommand.html" class="tsd-signature-type">FabaCoreCommand</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -261,10 +285,16 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_fabacoremediator_.ifabacoremediator.html">IFabaCoreMediator</a>.<a href="../interfaces/_fabacoremediator_.ifabacoremediator.html#registercommands">registerCommands</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Faba-network/fabalous-core/blob/d52e38f/src/FabaCoreMediator.ts#L26">FabaCoreMediator.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/Faba-network/fabalous-core/blob/048a21d/src/FabaCoreMediator.ts#L51">FabaCoreMediator.ts:51</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Function need to be overwrite by Mediator</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -278,10 +308,16 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_fabacoremediator_.ifabacoremediator.html">IFabaCoreMediator</a>.<a href="../interfaces/_fabacoremediator_.ifabacoremediator.html#removecommand">removeCommand</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Faba-network/fabalous-core/blob/d52e38f/src/FabaCoreMediator.ts#L49">FabaCoreMediator.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/Faba-network/fabalous-core/blob/048a21d/src/FabaCoreMediator.ts#L94">FabaCoreMediator.ts:94</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove all registration form event // command</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -289,6 +325,8 @@
 								</li>
 								<li>
 									<h5>command: <a href="_fabacorecommand_.fabacorecommand.html" class="tsd-signature-type">FabaCoreCommand</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -304,10 +342,16 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_fabacoremediator_.ifabacoremediator.html">IFabaCoreMediator</a>.<a href="../interfaces/_fabacoremediator_.ifabacoremediator.html#updatecommand">updateCommand</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Faba-network/fabalous-core/blob/d52e38f/src/FabaCoreMediator.ts#L39">FabaCoreMediator.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/Faba-network/fabalous-core/blob/048a21d/src/FabaCoreMediator.ts#L78">FabaCoreMediator.ts:78</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Method can be used to update Event and Command and overwrite the prevoise registration</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -318,6 +362,8 @@
 								</li>
 								<li>
 									<h5>newCommand: <a href="_fabacorecommand_.fabacorecommand.html" class="tsd-signature-type">FabaCoreCommand</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>

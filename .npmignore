@@ -7,3 +7,4 @@ test
 gulpfile.js
 npm-debug.log
 tsconfig.json
+.vscode
