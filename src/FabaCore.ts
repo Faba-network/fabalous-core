@@ -98,7 +98,7 @@ export default class FabaCore {
     }
 
      /**
-     * Go thorugh the routes and create the command and execute
+     * Go through the routes and create the command and execute
      * @param event FabaEvents
      * @param resu FabaEventResultType
      */
