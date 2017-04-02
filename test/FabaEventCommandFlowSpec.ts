@@ -22,12 +22,16 @@ class TestEvent extends FabaEvent {
 class TestCommand extends FabaCommand<Store> {
     execute(event: TestEvent) {
         //this.data.test = true;
+        event.callBack();
+        event.cbs();
+
     }
 }
 
 class TestCommand2 extends FabaCommand<Store> {
     execute(event: TestEvent) {
-        event.callBack();
+        console.log(event);
+        event.cbs();
     }
 }
 
@@ -54,11 +58,27 @@ describe("Event Command Flow", () => {
         expect(FabaCore.mediators.length).toBeGreaterThan(0);
     });
 
-    it("Test store should be true", function (done) {
+    it("TestEvent should be called", function (done) {
         new FabaCore(store);
         FabaCore.addMediator(TestMediator);
         new TestEvent().dispatch().then(() => {
            done();
+        });
+    });
+
+    it("TestEvent should be called", function (done) {
+        new FabaCore(store);
+        FabaCore.addMediator(TestMediator);
+        new TestEvent().delayDispatch(100).then(() => {
+            done();
+        });
+    });
+
+    xit("TestEvent callback should be called", function (done) {
+        new FabaCore(store);
+        FabaCore.addMediator(TestMediator);
+        new TestEvent().dispatch((e: TestEvent) => {
+            done();
         });
     });
 });

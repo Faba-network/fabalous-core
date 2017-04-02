@@ -9,7 +9,8 @@
     "develop": "tsc -w",
     "cleanSrc": "find . -name '*.js' -type f -delete",
     "install": "shx cp -Rf ./lib/* ./ && shx rm -r ./lib",
-    "test": "jest --no-cache --watch --coverage",
+    "test": "jest --watch",
+    "coverage": "jest --no-cache --watch --coverage",
     "doc": "gulp typedoc"
   },
   "repository": {

@@ -39,13 +39,13 @@ export default class FabaEvent {
      * @param calb
      * @param result
      */
-    delayDispatch(delay: number, calb?: any, result?: FabaEventResultType): void {
+    async delayDispatch(delay: number, calb?: any, result?: FabaEventResultType): Promise<any> {
         setTimeout(()=> {
             if (calb) {
                 this.cbs = calb;
             }
 
-            FabaCore.dispatchEvent(this, result);
+            return FabaCore.dispatchEvent(this, result);
         }, delay);
     }
 
