@@ -53,4 +53,10 @@ describe("Immutablestore", ()=> {
             done();
         }, 100);
     });
+/*
+    it("should serialize", function(){
+       let ser:string = store.serialize();
+       expect(ser).toBe({"test":false});
+    });
+    */
 });

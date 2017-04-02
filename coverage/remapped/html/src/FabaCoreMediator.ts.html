@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/FabaCoreMediator.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> FabaCoreMediator.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>12/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">12.5% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>1/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">42.86% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>12/24</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import FabaEvent from "./FabaEvent";
+import FabaCoreCommand from "./FabaCoreCommand";
+&nbsp;
+export interface IMediatorCmdList {
+    event: FabaEvent;
+    commands: Array&lt;IMedaitorCmd&gt;;
+}
+&nbsp;
+export interface IMedaitorCmd {
+    event: any;
+    cmd: any;
+}
+export interface INameToValueMap extends Object {
+    [key: string]: any;
+}
+&nbsp;
+export interface IFabaCoreMediator extends Object {
+    registerCommands(): void;
+&nbsp;
+    addCommand(event: typeof FabaEvent, command: typeof FabaCoreCommand): void;
+    updateCommand(event: typeof FabaEvent, oldCommand: typeof FabaCoreCommand, newCommand: typeof FabaCoreCommand): void;
+    removeCommand(event: typeof FabaEvent, command: typeof FabaCoreCommand): void;
+&nbsp;
+    /*
+     addCommand(event:{new():void;}, command: {new():void;}):void;
+     updateCommand(event:{new():void;}, command: {new():void;}):void;
+     removeCommand(event:{new():void;}, command: {new():void;}):void;
+     */
+}
+&nbsp;
+/**
+ * FabaCoreMediator should be extended by any Runtime
+ *
+ * Add / Remove and Update all commands
+ *
+ */
+&nbsp;
+export default class FabaCoreMediator implements IFabaCoreMediator {
+    cmdList: INameToValueMap = {};
+&nbsp;
+    /**
+     * Call the "registerCommands" function after create
+     */
+    constructor() {
+        this.registerCommands();
+    }
+&nbsp;
+    /**
+     * Function need to be overwrite by Mediator
+     */
+<span class="fstat-no" title="function not covered" >    registerCommands(): void {</span>
+<span class="cstat-no" title="statement not covered" >        throw ("Please override register Commands");</span>
+    }
+&nbsp;
+    /**
+     * Add command and event to the Mediator
+     *
+     * @param event {FabaEvent}
+     * @param command {FabaCoreCommand}
+     */
+    addCommand(event: typeof FabaEvent, command: typeof FabaCoreCommand): void {
+        const h: FabaEvent = new event();
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.cmdList[event.name]) {
+            this.cmdList[h.identifyer] = {event: event, commands: []};
+        }
+&nbsp;
+        this.cmdList[h.identifyer].commands.push({cmd: command, options: {}});
+    }
+&nbsp;
+&nbsp;
+    /**
+     * Method can be used to update Event and Command and overwrite the prevoise registration
+     *
+     * @param event
+     * @param oldCommand
+     * @param newCommand
+     */
+    updateCommand(event: typeof FabaEvent, oldCommand: typeof FabaCoreCommand, newCommand: typeof FabaCoreCommand<span class="fstat-no" title="function not covered" >): void {</span>
+        const h: FabaEvent = <span class="cstat-no" title="statement not covered" >new event();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.cmdList[h.identifyer].commands.map((item: IMedaitorCmd<span class="fstat-no" title="function not covered" >) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (item.cmd === oldCommand) {</span>
+<span class="cstat-no" title="statement not covered" >                item.cmd = newCommand;</span>
+            }
+        });
+    }
+&nbsp;
+    /**
+     * Remove all registration form event // command
+     *
+     * @param event
+     * @param command
+     */
+    removeCommand(event: typeof FabaEvent, command: typeof FabaCoreCommand<span class="fstat-no" title="function not covered" >): void {</span>
+        const h: FabaEvent = <span class="cstat-no" title="statement not covered" >new event();</span>
+<span class="cstat-no" title="statement not covered" >        for (let i = 0; i &lt; this.cmdList[h.identifyer].commands.length; i++) {</span>
+            let obj = <span class="cstat-no" title="statement not covered" >this.cmdList[h.identifyer].commands[i];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (obj.cmd === command) {</span>
+<span class="cstat-no" title="statement not covered" >                this.cmdList[h.identifyer].commands.splice(i, 1);</span>
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (this.cmdList[h.identifyer].commands.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >            delete this.cmdList[h.identifyer];</span>
+        }
+&nbsp;
+    }
+&nbsp;
+}
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 02 2017 18:20:59 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
