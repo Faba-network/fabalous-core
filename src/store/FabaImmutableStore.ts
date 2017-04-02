@@ -9,23 +9,39 @@ interface IBaobabUpdate{
     };
 }
 
+/**
+ * Immutable store used by every Command (Register the store in Core / Runtime)
+ */
 export default class FabaImmutableStore<TProp> extends FabaStore<TProp> {
     private bTree: any;
     private cursor: any;
     protected bData: any;
 
+    /**
+     *
+     * @returns {any}
+     */
     get tree() {
         return this.bTree;
     }
 
+    /**
+     *
+     * @returns {any}
+     */
     get data(): TProp {
         return this.bData;
     }
 
-    constructor(jsonObject: any) {
+    /**
+     *
+     * @param jsonObject
+     */
+    constructor(jsonObject: any, options?:any) {
         super();
+        options = (options) ? options : {immutable:false};
 
-        this.bTree = new Baobab(jsonObject);
+        this.bTree = new Baobab(jsonObject, options);
         this.cursor = this.tree.select();
         this.bData = this.cursor.get();
 
@@ -35,13 +51,40 @@ export default class FabaImmutableStore<TProp> extends FabaStore<TProp> {
         });
     }
 
+    /**
+     *
+     * @param path
+     * @param value
+     * @param update
+     */
     set(path: string, value: any, update: boolean = true) {
         let arrPath = path.split(".");
         this.cursor.set(arrPath, value);
     }
 
-    duplicate(){
+    /**
+     *
+     */
+    duplicate(path: string, deppClone:boolean = false):any{
+        let arrPath = path.split(".");
+        let curs = this.tree.select(arrPath);
 
+        return (deppClone) ? curs.deepClone() : curs.clone();
+    }
+
+    /**
+     * Serialize cursor (if empty serialize all)
+     *
+     * @returns {string}
+     */
+    serialize(path?:string):string{
+        if (path){
+            let arrPath = path.split(".");
+            let curs = this.tree.select(arrPath);
+            curs.serialize();
+        }
+
+        return this.cursor.serialize();
     }
 }
 

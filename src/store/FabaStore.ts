@@ -1,4 +1,6 @@
-
+/**
+ * FabaStore used as alternative to FabaImmutableStore
+ */
 export default class FabaStore<TProp>{
     private _data:TProp;
 
