@@ -40,7 +40,7 @@ export default class FabaCore {
     /*
     The source of truth
      */
-    private static store: FabaStore<any>;
+    static store: FabaStore<any>;
 
     /**
      * Core class
@@ -48,6 +48,7 @@ export default class FabaCore {
      */
     constructor(store:FabaStore<any>){
         if (!FabaCore.store) FabaCore.store = store;
+        else console.log("Store already set");
     }
 
     static setTestStore(store: FabaStore<any>) {
