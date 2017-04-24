@@ -11,4 +11,11 @@ export default class FabaStore<TProp>{
     get data(): TProp {
         return this._data;
     }
+
+    /**
+     *
+     */
+    duplicate(path: string, deppClone:boolean = false):any{
+        return this._data;
+    }
 }
