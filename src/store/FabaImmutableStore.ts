@@ -51,15 +51,9 @@ export default class FabaImmutableStore<TProp> extends FabaStore<TProp> {
         this.bData = this.cursor.get();
 
         this.bTree.on("update", (e:IBaobabUpdate) => {
-            console.log("update");
             this.bData = e.data.currentData;
             new FabaStoreUpdateEvent(e).dispatch();
         });
-
-        this.cursor.on("update", (e:IBaobabUpdate) => {
-            console.log("update");
-        });
-
     }
 
     /**
