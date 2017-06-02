@@ -109,6 +109,12 @@ export default class FabaCore {
             const routeItem: INameToValueMap = this.mediators[a].mediator.cmdList;
             if (routeItem && routeItem[event.identifyer]){
                 for (let obj of routeItem[event.identifyer].commands) {
+
+                    if (process.env.FABA_DEBUG == 2){
+                        console.log(event);
+                        console.log(FabaCore.store);
+                    }
+
                     switch (resu) {
                         case FabaEventResultType.EXECUTE:
                             new obj.cmd(FabaCore.store).execute(event);
