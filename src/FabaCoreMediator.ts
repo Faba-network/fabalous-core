@@ -1,5 +1,7 @@
 import FabaEvent from "./FabaEvent";
 import FabaCoreCommand from "./FabaCoreCommand";
+import FabaStore from "./store/FabaStore";
+import FabaImmutableStore from "../lib/store/FabaImmutableStore";
 
 export interface IMediatorCmdList {
     event: FabaEvent;
@@ -38,10 +40,14 @@ export interface IFabaCoreMediator extends Object {
 export default class FabaCoreMediator implements IFabaCoreMediator {
     cmdList: INameToValueMap = {};
 
+    store : FabaImmutableStore<any> | FabaStore<any>;
+
     /**
      * Call the "registerCommands" function after create
+     * Set module store
      */
-    constructor() {
+    constructor(store? : FabaImmutableStore<any> | FabaStore<any>) {
+        this.store = store;
         this.registerCommands();
     }
 
