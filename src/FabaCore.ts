@@ -115,21 +115,23 @@ export default class FabaCore {
                         console.log(FabaCore.store);
                     }
 
+                    const store = this.mediators[a].mediator.store || FabaCore.store;
+
                     switch (resu) {
                         case FabaEventResultType.EXECUTE:
-                            new obj.cmd(this.mediators[a].mediator.store).execute(event);
+                            new obj.cmd(store).execute(event);
                             break;
                         case FabaEventResultType.RESULT:
-                            new obj.cmd(this.mediators[a].mediator.store).result(event);
+                            new obj.cmd(store).result(event);
                             break;
                         case FabaEventResultType.ERROR:
-                            new obj.cmd(this.mediators[a].mediator.store).error(event);
+                            new obj.cmd(store).error(event);
                             break;
                         case FabaEventResultType.TIMEOUT:
-                            new obj.cmd(this.mediators[a].mediator.store).timeout(event);
+                            new obj.cmd(store).timeout(event);
                             break;
                         default:
-                            new obj.cmd(this.mediators[a].mediator.store).execute(event);
+                            new obj.cmd(store).execute(event);
                     }
                 }
             }
