@@ -1,7 +1,7 @@
 import FabaEvent from "./FabaEvent";
 import FabaCoreCommand from "./FabaCoreCommand";
 import FabaStore from "./store/FabaStore";
-import FabaImmutableStore from "../lib/store/FabaImmutableStore";
+import FabaImmutableStore from "./store/FabaImmutableStore";
 
 export interface IMediatorCmdList {
     event: FabaEvent;
