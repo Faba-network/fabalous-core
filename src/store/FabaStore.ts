@@ -4,6 +4,10 @@
 export default class FabaStore<TProp>{
     private _data:TProp;
 
+    get tree() {
+        return {};
+    }
+
     constructor(data?:TProp){
         this._data = data;
     }
