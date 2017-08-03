@@ -10,7 +10,8 @@ interface IBaobabUpdate{
 }
 
 export interface IFabaImmutableStoreOptions{
-    immutable:boolean
+    immutable:boolean,
+    update?:boolean
 }
 
 /**
@@ -20,6 +21,9 @@ export default class FabaImmutableStore<TProp> extends FabaStore<TProp> {
     private bTree: any;
     private cursor: any;
     protected bData: any;
+
+    // Name of the store to update container
+    name:string;
 
     /**
      *
@@ -49,11 +53,14 @@ export default class FabaImmutableStore<TProp> extends FabaStore<TProp> {
         this.bTree = new Baobab(jsonObject, opt);
         this.cursor = this.tree.select();
         this.bData = this.cursor.get();
+        if (!options || !options.update){
+            this.bTree.on("update", (e:IBaobabUpdate) => {
+                this.bData = e.data.currentData;
 
-        this.bTree.on("update", (e:IBaobabUpdate) => {
-            this.bData = e.data.currentData;
-            new FabaStoreUpdateEvent(e).dispatch();
-        });
+                // Use name
+                new FabaStoreUpdateEvent(e).dispatch();
+            });
+        }
     }
 
     /**
