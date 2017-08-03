@@ -53,13 +53,14 @@ export default class FabaImmutableStore<TProp> extends FabaStore<TProp> {
         this.bTree = new Baobab(jsonObject, opt);
         this.cursor = this.tree.select();
         this.bData = this.cursor.get();
-        if (!options || !options.update){
-            this.bTree.on("update", (e:IBaobabUpdate) => {
-                this.bData = e.data.currentData;
 
-                // Use name
+        this.bTree.on("update", (e:IBaobabUpdate) => {
+            this.bData = e.data.currentData;
+            // Use name
+            if (!options || !options.update) {
                 new FabaStoreUpdateEvent(e).dispatch();
-            });
+            }
+        });
         }
     }
 
