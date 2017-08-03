@@ -61,7 +61,6 @@ export default class FabaImmutableStore<TProp> extends FabaStore<TProp> {
                 new FabaStoreUpdateEvent(e).dispatch();
             }
         });
-        }
     }
 
     /**
