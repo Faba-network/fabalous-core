@@ -7,7 +7,7 @@ export default class FabaEvent {
 
     identifyer: string;
     cbs: any;
-
+    sessionData:any;
     /**
      *
      * @param identifyer
