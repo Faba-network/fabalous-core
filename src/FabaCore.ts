@@ -119,6 +119,9 @@ export default class FabaCore {
 
                     switch (resu) {
                         case FabaEventResultType.EXECUTE:
+                            if (obj.permission && !obj.permission()){
+                                return;
+                            }
                             new obj.cmd(store).execute(event);
                             break;
                         case FabaEventResultType.RESULT:

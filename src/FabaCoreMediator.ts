@@ -11,6 +11,8 @@ export interface IMediatorCmdList {
 export interface IMedaitorCmd {
     event: any;
     cmd: any;
+    permission: any;
+    options: any;
 }
 export interface INameToValueMap extends Object {
     [key: string]: any;
@@ -64,13 +66,13 @@ export default class FabaCoreMediator implements IFabaCoreMediator {
      * @param event {FabaEvent}
      * @param command {FabaCoreCommand}
      */
-    addCommand(event: typeof FabaEvent, command: typeof FabaCoreCommand): void {
+    addCommand(event: typeof FabaEvent, command: typeof FabaCoreCommand, permission?:any): void {
         const h: FabaEvent = new event();
         if (!this.cmdList[event.name]) {
             this.cmdList[h.identifyer] = {event: event, commands: []};
         }
 
-        this.cmdList[h.identifyer].commands.push({cmd: command, options: {}});
+        this.cmdList[h.identifyer].commands.push({cmd: command, permission: {permission}, options: {}});
     }
 
 
