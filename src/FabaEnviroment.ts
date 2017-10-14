@@ -2,4 +2,4 @@
  * Enviroment vars
  * @type {boolean}
  */
- process.env.FABA_DEBUG = true;
+ process.env.FABA_DEBUG = "true";

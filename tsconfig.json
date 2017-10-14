@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "es5",
     "sourceMap": true,
-    "module": "commonjs",
+    "module": "esnext",
+    "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "importHelpers": true,
@@ -20,6 +21,7 @@
     ]
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "test"
   ]
 }

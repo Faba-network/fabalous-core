@@ -110,7 +110,7 @@ export default class FabaCore {
             if (routeItem && routeItem[event.identifyer]){
                 for (let obj of routeItem[event.identifyer].commands) {
 
-                    if (process.env.FABA_DEBUG == 2){
+                    if (process.env.FABA_DEBUG == "2"){
                         console.log(event);
                         console.log(FabaCore.store);
                     }
