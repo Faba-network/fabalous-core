@@ -72,7 +72,7 @@ export default class FabaCoreMediator implements IFabaCoreMediator {
             this.cmdList[h.identifyer] = {event: event, commands: []};
         }
 
-        this.cmdList[h.identifyer].commands.push({cmd: command, permission: {permission}, options: {}});
+        this.cmdList[h.identifyer].commands.push({cmd: command, permission: permission, options: {}});
     }
 
 
