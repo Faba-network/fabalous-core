@@ -11,7 +11,7 @@ export interface IMediatorCmdList {
 export interface IMedaitorCmd {
     event: any;
     cmd: any;
-    permission: any;
+    permission? : (store: FabaStore<any> | FabaImmutableStore<any>, event:FabaEvent) => boolean;
     options: any;
 }
 export interface INameToValueMap extends Object {
@@ -66,7 +66,7 @@ export default class FabaCoreMediator implements IFabaCoreMediator {
      * @param event {FabaEvent}
      * @param command {FabaCoreCommand}
      */
-    addCommand(event: typeof FabaEvent, command: typeof FabaCoreCommand, permission?:any): void {
+    addCommand(event: typeof FabaEvent, command: typeof FabaCoreCommand, permission?: (store: FabaStore<any> | FabaImmutableStore<any>, event:FabaEvent) => boolean): void {
         const h: FabaEvent = new event();
         if (!this.cmdList[event.name]) {
             this.cmdList[h.identifyer] = {event: event, commands: []};
@@ -74,7 +74,6 @@ export default class FabaCoreMediator implements IFabaCoreMediator {
 
         this.cmdList[h.identifyer].commands.push({cmd: command, permission: permission, options: {}});
     }
-
 
     /**
      * Method can be used to update Event and Command and overwrite the prevoise registration
