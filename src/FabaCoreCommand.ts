@@ -32,5 +32,5 @@ export default class FabaCoreCommand<TStore> implements IFabaCoreCommand<TStore>
 }
 
 export interface IFabaCoreCommand<TStore> {
-    store: FabaImmutableStore<TStore> | FabaStore<TStore>;
+    store: FabaImmutableStore<TStore> | FabaStore<TStore> | FabaImStore<TStore>;
 }
