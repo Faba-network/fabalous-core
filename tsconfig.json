@@ -1,33 +1,27 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "esnext",
     "sourceMap": true,
-    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "declaration": false,
-    "noImplicitAny": false,
-    "removeComments": true,
+    "importHelpers": true,
+    "declaration": true,
+    "noImplicitAny": true,
+    "removeComments": false,
     "noLib": false,
     "preserveConstEnums": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "moduleResolution": "node",
-    "rootDir": "./../../../../src/",
-    "importHelpers": true,
+    "suppressImplicitAnyIndexErrors": false,
+    "outDir": "./lib/",
+    "rootDir": "./",
+    "skipLibCheck": true,
     "lib": [
-      "esnext",
-      "dom"
-    ],
-    "forceConsistentCasingInFileNames": true,
-    "strictNullChecks": true,
-    "baseUrl": "./"
+      "es7"
+    ]
   },
-  "include": [
-    "./../../../../src/"
-  ],
   "exclude": [
-    "./../../../../node_modules",
-    "./../../../../test"
+    "node_modules",
+    "test"
   ]
 }
