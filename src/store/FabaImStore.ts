@@ -17,8 +17,6 @@ export default class FabaImStore<TProp>{
         updateInterval:20
     }
 
-
-
     constructor(jsonObject: TProp, options?:IFabaImStoreOptions){
         this.patchData = []; 
         this.workData = jsonObject;
@@ -28,7 +26,21 @@ export default class FabaImStore<TProp>{
         setInterval(() => this.updatePatchData(), this.options.updateInterval);
     }
 
-    update(obj:TProp){
+    update(obj:TProp, immediately?:boolean){
+        if (immediately){
+            let t = Object.assign({}, this.workData, obj);
+            let check = diff(t, this.data);
+
+            if (Object.keys(check).length > 0){    
+                this.workData = t;
+                this.data = t;
+                this.data = deepFreeze(this.data)        
+                this.commit();
+            }
+
+            return;
+        }
+
         this.patchData.push(obj);
     }
 
