@@ -1,4 +1,6 @@
 import FabaStoreUpdateEvent from "../event/FabaStoreUpdateEvent";
+import { diff, addedDiff, deletedDiff, updatedDiff, detailedDiff } from 'deep-object-diff';
+var deepFreeze = require('deep-freeze')
 
 export interface IFabaImStoreOptions{
     updateInterval:number;
@@ -7,6 +9,7 @@ export interface IFabaImStoreOptions{
 
 export default class FabaImStore<TProp>{
     data:TProp;
+    workData:TProp;
     patchData:Array<any>;
 
     options:IFabaImStoreOptions = {
@@ -14,12 +17,15 @@ export default class FabaImStore<TProp>{
         updateInterval:20
     }
 
+
+
     constructor(jsonObject: TProp, options?:IFabaImStoreOptions){
-        this.data = jsonObject;
         this.patchData = []; 
+        this.workData = jsonObject;
+        this.data = deepFreeze(jsonObject);
 
         if (options) this.options = options;
-        setInterval(() => this.updatePatchData, this.options.updateInterval);
+        setInterval(() => this.updatePatchData(), this.options.updateInterval);
     }
 
     update(obj:TProp){
@@ -32,15 +38,22 @@ export default class FabaImStore<TProp>{
 
     private updatePatchData(){
         if (this.patchData.length == 0) return;
-        
-        this.patchData.forEach(element => {
-            this.data = Object.assign(this.data, element);
-        });
+        let equal = true;
+
+        this.patchData.forEach(function (element) {
+            let t = Object.assign({}, this.workData, element);
+            this.workData = t;
+            let check = diff(t, this.data);
+
+            if (Object.keys(check).length > 0){
+                this.data = t;
+                equal = false;
+            }
+       });
 
         this.patchData = [];
-
-        if (this.options.freeze) Object.freeze(this.data);
-
+        this.data = deepFreeze(this.data)
+        
         this.commit();
     }
 }
