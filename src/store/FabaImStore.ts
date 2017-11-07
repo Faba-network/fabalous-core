@@ -52,8 +52,9 @@ export default class FabaImStore<TProp>{
        });
 
         this.patchData = [];
-        this.data = deepFreeze(this.data)
+        if(equal) return;
         
+        this.data = deepFreeze(this.data)        
         this.commit();
     }
 }
