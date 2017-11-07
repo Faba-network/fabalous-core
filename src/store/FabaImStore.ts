@@ -19,7 +19,7 @@ export default class FabaImStore<TProp>{
         this.patchData = []; 
 
         if (options) this.options = options;
-        setInterval(this.updatePatchData, this.options.updateInterval);
+        setInterval(() => this.updatePatchData, this.options.updateInterval);
     }
 
     update(obj:TProp){
