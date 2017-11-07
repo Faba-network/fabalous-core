@@ -1,6 +1,6 @@
 import FabaStoreUpdateEvent from "../event/FabaStoreUpdateEvent";
-import { diff, addedDiff, deletedDiff, updatedDiff, detailedDiff } from 'deep-object-diff';
-var deepFreeze = require('deep-freeze')
+const deepFreeze = require('deep-freeze')
+const diff = require("deep-object-diff").diff;
 
 export interface IFabaImStoreOptions{
     updateInterval:number;
