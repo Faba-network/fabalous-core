@@ -40,7 +40,7 @@ export default class FabaImStore<TProp>{
         if (this.patchData.length == 0) return;
         let equal = true;
 
-        this.patchData.forEach(function (element) {
+        this.patchData.forEach((element) => {
             let t = Object.assign({}, this.workData, element);
             this.workData = t;
             let check = diff(t, this.data);
