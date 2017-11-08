@@ -11,6 +11,15 @@ export default class FabaImStore<TProp>{
     data:TProp;
     workData:TProp;
     patchData:Array<any>;
+    
+    get tree() {
+        return {};
+    }
+
+    duplicate(path: string, deppClone:boolean = false):any{
+        return this.data;
+    }
+
 
     options:IFabaImStoreOptions = {
         freeze:false,
