@@ -33,7 +33,7 @@ export default class FabaImStore<TProp>{
 
             if (Object.keys(check).length > 0){    
                 this.workData = t;
-                this.data = deepFreeze(this.data)        
+                this.data = deepFreeze(t)        
                 this.commit();
             }
 
