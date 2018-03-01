@@ -29,28 +29,28 @@
   },
   "homepage": "https://github.com/Faba-network/fabalous-core#readme",
   "dependencies": {
-    "@types/node": "^8.0.49",
+    "@types/node": "^9.4.6",
     "@types/systemjs": "^0.20.6",
-    "baobab": "^2.5.0",
+    "baobab": "^2.5.1",
     "deep-freeze": "0.0.1",
-    "deep-object-diff": "^1.0.4",
+    "deep-object-diff": "^1.1.0",
     "gulp": "^3.9.1",
-    "gulp-clean": "^0.3.2",
+    "gulp-clean": "^0.4.0",
     "gulp-util": "^3.0.8",
-    "nodemon": "^1.12.1",
+    "nodemon": "^1.17.1",
     "shx": "^0.2.2",
-    "tslib": "^1.8.0",
-    "typescript": "^2.6.1"
+    "tslib": "^1.9.0",
+    "typescript": "^2.7.2"
   },
   "readme": "README.md",
   "devDependencies": {
-    "@types/jest": "^21.1.5",
-    "gulp-typedoc": "^2.1.1",
-    "jest": "^21.2.1",
-    "jest-cli": "^21.2.1",
-    "ts-jest": "^21.1.4",
-    "tslint": "^5.8.0",
-    "typedoc": "^0.9.0"
+    "@types/jest": "^22.1.4",
+    "gulp-typedoc": "^2.2.0",
+    "jest": "^22.4.2",
+    "jest-cli": "^22.4.2",
+    "ts-jest": "^22.4.0",
+    "tslint": "^5.9.1",
+    "typedoc": "^0.10.0"
   },
   "jest": {
     "globals": {
