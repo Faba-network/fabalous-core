@@ -1,6 +1,5 @@
 import FabaImmutableStore from "./store/FabaImmutableStore";
 import FabaStore from "./store/FabaStore";
-import FabaImStore from "./store/FabaImStore";
 
 /**
  * FabaCoreCommand used in every Runtime
@@ -11,7 +10,7 @@ export default class FabaCoreCommand<TStore> implements IFabaCoreCommand<TStore>
     /**
      * Store can be Immutable or not
      */
-    store: FabaImmutableStore<TStore> | FabaStore<TStore> | FabaImStore<TStore>;
+    store: FabaImmutableStore<TStore> | FabaStore<TStore>;
 
 
     /**
@@ -32,5 +31,5 @@ export default class FabaCoreCommand<TStore> implements IFabaCoreCommand<TStore>
 }
 
 export interface IFabaCoreCommand<TStore> {
-    store: FabaImmutableStore<TStore> | FabaStore<TStore> | FabaImStore<TStore>;
+    store: FabaImmutableStore<TStore> | FabaStore<TStore> | FabaImmutableStore<TStore>;
 }

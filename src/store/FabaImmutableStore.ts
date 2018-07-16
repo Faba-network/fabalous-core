@@ -1,102 +1,80 @@
 import FabaStoreUpdateEvent from "../event/FabaStoreUpdateEvent";
-import FabaStore from "./FabaStore";
+const deepFreeze = require('deep-freeze');
+const diff = require("deep-object-diff").diff;
 
-const Baobab = require("baobab");
-
-interface IBaobabUpdate{
-    data: {
-        currentData:Object;
-    };
+export interface IFabaImStoreOptions{
+    updateInterval:number;
+    freeze:boolean;
 }
 
-export interface IFabaImmutableStoreOptions{
-    immutable:boolean,
-    update?:boolean
-}
-
-/**
- * Immutable store used by every Command (Register the store in Core / Runtime)
- */
-export default class FabaImmutableStore<TProp> extends FabaStore<TProp> {
-    private bTree: any;
-    private cursor: any;
-    protected bData: any;
-
-    // Name of the store to update container
-    name:string;
-
-    /**
-     *
-     * @returns {any}
-     */
+export default class FabaImmutableStore<TProp>{
+    data:TProp;
+    workData:TProp;
+    patchData:Array<any>;
+    
     get tree() {
-        return this.bTree;
+        return {};
     }
 
-    /**
-     *
-     * @returns {any}
-     */
-    get data(): TProp {
-        return this.bData;
-    }
-
-    /**
-     *
-     * @param jsonObject
-     * @param options
-     */
-    constructor(jsonObject: any, options?:IFabaImmutableStoreOptions) {
-        super();
-        let opt = (options) ? options : {immutable:true};
-
-        this.bTree = new Baobab(jsonObject, opt);
-        this.cursor = this.tree.select();
-        this.bData = this.cursor.get();
-
-        this.bTree.on("update", (e:IBaobabUpdate) => {
-            this.bData = e.data.currentData;
-            // Use name
-            if (!options || !options.update) {
-                new FabaStoreUpdateEvent(e).dispatch();
-            }
-        });
-    }
-
-    /**
-     *
-     * @param path
-     * @param value
-     * @param update
-     */
-    set(path: string, value: any, update: boolean = true) {
-        let arrPath = path.split(".");
-        this.cursor.set(arrPath, value);
-    }
-
-    /**
-     *
-     */
     duplicate(path: string, deppClone:boolean = false):any{
-        let arrPath = path.split(".");
-        let curs = this.tree.select(arrPath);
-
-        return (deppClone) ? curs.deepClone() : curs.clone();
+        return JSON.parse(JSON.stringify(this.data));
     }
 
-    /**
-     * Serialize cursor (if empty serialize all)
-     *
-     * @returns {string}
-     */
-    serialize(path?:string):string{
-        if (path){
-            let arrPath = path.split(".");
-            let curs = this.tree.select(arrPath);
-            curs.serialize();
+
+    options:IFabaImStoreOptions = {
+        freeze:false,
+        updateInterval:16
+    };
+
+    constructor(jsonObject: TProp, options?:IFabaImStoreOptions){
+        this.patchData = []; 
+        this.workData = jsonObject;
+        this.data = deepFreeze(jsonObject);
+
+        if (options) this.options = options;
+        setInterval(() => this.updatePatchData(), this.options.updateInterval);
+    }
+
+    update(obj:TProp, immediately?:boolean){
+        if (immediately){
+            let t = Object.assign({}, this.workData, obj);
+            let check = diff(t, this.data);
+
+            if (Object.keys(check).length > 0){    
+                this.workData = t;
+                if (this.options.freeze) this.data = deepFreeze(t);
+                this.commit();
+            }
+
+            return;
         }
 
-        return this.cursor.serialize();
+        this.patchData.push(obj);
+    }
+
+    commit(){
+        new FabaStoreUpdateEvent(this.data).dispatch();
+    }
+
+    private updatePatchData(){
+        if (this.patchData.length == 0) return;
+        let equal = true;
+
+        this.patchData.forEach((element) => {
+            let t = Object.assign({}, this.workData, element);
+            this.workData = t;
+            let check = diff(t, this.data);
+
+            if (Object.keys(check).length > 0){
+                this.data = t;
+                equal = false;
+            }
+       });
+
+        this.patchData = [];
+        if(equal) return;
+
+        if (this.options.freeze) this.data = deepFreeze(this.data);
+        this.commit();
     }
 }
-
