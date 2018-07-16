@@ -1,7 +1,10 @@
 /**
  * FabaStore used as alternative to FabaImmutableStore
  */
-export default class FabaStore<TProp>{
+import {IFabaStore} from "./IFabaStore";
+
+
+export default class FabaStore<TProp> implements IFabaStore<TProp>{
     private _data:TProp;
 
     get tree() {
@@ -16,10 +19,14 @@ export default class FabaStore<TProp>{
         return this._data;
     }
 
+    update(){
+
+    }
+
     /**
      *
      */
-    duplicate(path: string, deppClone:boolean = false):any{
-        return this._data;
+    duplicate():any{
+        return JSON.parse(JSON.stringify(this._data));
     }
 }

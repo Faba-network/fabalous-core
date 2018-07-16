@@ -1,4 +1,5 @@
 import FabaStoreUpdateEvent from "../event/FabaStoreUpdateEvent";
+import {IFabaStore} from "./IFabaStore";
 const deepFreeze = require('deep-freeze');
 const diff = require("deep-object-diff").diff;
 
@@ -7,19 +8,14 @@ export interface IFabaImStoreOptions{
     freeze:boolean;
 }
 
-export default class FabaImmutableStore<TProp>{
+export default class FabaImmutableStore<TProp> implements IFabaStore<TProp>{
     data:TProp;
-    workData:TProp;
-    patchData:Array<any>;
-    
-    get tree() {
-        return {};
-    }
+    private workData:TProp;
+    private patchData:Array<any>;
 
-    duplicate(path: string, deppClone:boolean = false):any{
+    duplicate():any{
         return JSON.parse(JSON.stringify(this.data));
     }
-
 
     options:IFabaImStoreOptions = {
         freeze:false,
