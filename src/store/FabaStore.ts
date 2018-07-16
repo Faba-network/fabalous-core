@@ -19,8 +19,8 @@ export default class FabaStore<TProp> implements IFabaStore<TProp>{
         return this._data;
     }
 
-    update(){
-
+    update(obj:TProp, immediately?:boolean){
+        //this._data = obj;
     }
 
     /**
