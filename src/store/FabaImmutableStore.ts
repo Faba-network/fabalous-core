@@ -39,6 +39,7 @@ export default class FabaImmutableStore<TProp> implements IFabaStore<TProp>{
             if (Object.keys(check).length > 0){    
                 this.workData = t;
                 if (this.options.freeze) this.data = deepFreeze(t);
+                else this.data = t;
                 this.commit();
             }
 
