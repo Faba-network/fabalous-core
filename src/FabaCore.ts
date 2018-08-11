@@ -77,9 +77,6 @@ export default class FabaCore {
      */
     static addMediator(cls: typeof FabaMediator, idt: string = ""): boolean {
         for (let i = 0; i < FabaCore.mediators.length; i++) {
-            if (FabaCore.mediators[i].idt !== "") {
-                if (idt === FabaCore.mediators[i].idt) return false;
-            }
             const obj = FabaCore.mediators[i].cls;
 
             if (obj == cls) {
