@@ -67,6 +67,10 @@ export default class FabaEvent {
 
         return null;
     }
+
+    rDispatch(){
+        FabaCore.dispatchEvent(this);
+    }
 }
 
 /**
