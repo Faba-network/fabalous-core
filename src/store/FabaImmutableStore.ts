@@ -17,8 +17,8 @@ export default class FabaImmutableStore<TProp> implements IFabaStore<TProp>{
     }
 
     options:IFabaImStoreOptions = {
-        freeze:false,
-        updateInterval:2000
+        freeze:true,
+        updateInterval:16
     };
 
     get data(){
@@ -43,7 +43,6 @@ export default class FabaImmutableStore<TProp> implements IFabaStore<TProp>{
     }
 
     commit(){
-        console.log("commit")
         new FabaStoreUpdateEvent(this._reactData).dispatch();
     }
 
