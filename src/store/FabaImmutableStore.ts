@@ -1,34 +1,35 @@
 import FabaStoreUpdateEvent from "../event/FabaStoreUpdateEvent";
 import {IFabaStore} from "./IFabaStore";
+
 const deepFreeze = require('deep-freeze');
 
-export interface IFabaImStoreOptions{
-    updateInterval:number;
-    freeze:boolean;
+export interface IFabaImStoreOptions {
+    updateInterval: number;
+    freeze: boolean;
 }
 
-export default class FabaImmutableStore<TProp> implements IFabaStore<TProp>{
-    private _reactData:TProp;
-    private _workData:TProp;
-    private patchData:Array<any>;
+export default class FabaImmutableStore<TProp> implements IFabaStore<TProp> {
+    private _reactData: TProp;
+    private _workData: TProp;
+    private patchData: Array<any>;
 
-    duplicate():any{
+    duplicate(): any {
         return JSON.parse(JSON.stringify(this.data));
     }
 
-    options:IFabaImStoreOptions = {
-        freeze:true,
-        updateInterval:16
+    options: IFabaImStoreOptions = {
+        freeze: true,
+        updateInterval: 16
     };
 
-    get data(){
+    get data() {
         return this._workData;
     }
 
-    constructor(jsonObject: TProp, options?:IFabaImStoreOptions){
+    constructor(jsonObject: TProp, options?: IFabaImStoreOptions) {
         this.patchData = [];
         this._workData = jsonObject;
-        if (options && options.freeze){
+        if (options && options.freeze) {
             this._reactData = deepFreeze(jsonObject);
         } else {
             this._reactData = jsonObject;
@@ -38,17 +39,18 @@ export default class FabaImmutableStore<TProp> implements IFabaStore<TProp>{
         setInterval(() => this.updatePatchData(), this.options.updateInterval);
     }
 
-    update(obj:TProp){
+    update(obj: TProp, immediatly?: boolean) {
         this._workData = obj;
+        if (immediatly) this.updatePatchData();
     }
 
-    commit(){
+    commit() {
         new FabaStoreUpdateEvent(this._reactData).dispatch();
     }
 
-    private updatePatchData(){
-        if (this._workData !== this._reactData){
-            if (this.options && this.options.freeze){
+    private updatePatchData() {
+        if (this._workData !== this._reactData) {
+            if (this.options && this.options.freeze) {
                 this._reactData = deepFreeze(this._workData);
             } else {
                 this._reactData = this._workData;
