@@ -1,7 +1,6 @@
 import FabaStoreUpdateEvent from "../event/FabaStoreUpdateEvent";
 import {IFabaStore} from "./IFabaStore";
 const deepFreeze = require('deep-freeze');
-const diff = require("deep-object-diff").diff;
 
 export interface IFabaImStoreOptions{
     updateInterval:number;
@@ -9,8 +8,8 @@ export interface IFabaImStoreOptions{
 }
 
 export default class FabaImmutableStore<TProp> implements IFabaStore<TProp>{
-    data:TProp;
-    private workData:TProp;
+    private _reactData:TProp;
+    private _workData:TProp;
     private patchData:Array<any>;
 
     duplicate():any{
@@ -19,59 +18,44 @@ export default class FabaImmutableStore<TProp> implements IFabaStore<TProp>{
 
     options:IFabaImStoreOptions = {
         freeze:false,
-        updateInterval:16
+        updateInterval:2000
     };
 
+    get data(){
+        return this._workData;
+    }
+
     constructor(jsonObject: TProp, options?:IFabaImStoreOptions){
-        this.patchData = []; 
-        this.workData = jsonObject;
-        this.data = deepFreeze(jsonObject);
+        this.patchData = [];
+        this._workData = jsonObject;
+        if (options && options.freeze){
+            this._reactData = deepFreeze(jsonObject);
+        } else {
+            this._reactData = jsonObject;
+        }
 
         if (options) this.options = options;
         setInterval(() => this.updatePatchData(), this.options.updateInterval);
     }
 
-    update(obj:TProp, immediately?:boolean){
-        if (immediately){
-            let t = Object.assign({}, this.workData, obj);
-            let check = diff(t, this.data);
-
-            if (Object.keys(check).length > 0){    
-                this.workData = t;
-                if (this.options.freeze) this.data = deepFreeze(t);
-                else this.data = t;
-                this.commit();
-            }
-
-            return;
-        }
-
-        this.patchData.push(obj);
+    update(obj:TProp){
+        this._workData = obj;
     }
 
     commit(){
-        new FabaStoreUpdateEvent(this.data).dispatch();
+        console.log("commit")
+        new FabaStoreUpdateEvent(this._reactData).dispatch();
     }
 
     private updatePatchData(){
-        if (this.patchData.length == 0) return;
-        let equal = true;
-
-        this.patchData.forEach((element) => {
-            let t = Object.assign({}, this.workData, element);
-            this.workData = t;
-            let check = diff(t, this.data);
-
-            if (Object.keys(check).length > 0){
-                this.data = t;
-                equal = false;
+        if (this._workData !== this._reactData){
+            if (this.options && this.options.freeze){
+                this._reactData = deepFreeze(this._workData);
+            } else {
+                this._reactData = this._workData;
             }
-       });
 
-        this.patchData = [];
-        if(equal) return;
-
-        if (this.options.freeze) this.data = deepFreeze(this.data);
-        this.commit();
+            this.commit();
+        }
     }
 }
