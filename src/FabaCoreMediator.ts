@@ -69,10 +69,10 @@ export default class FabaCoreMediator implements IFabaCoreMediator {
     addCommand(event: typeof FabaEvent, command: typeof FabaCoreCommand, permission?: (store: FabaStore<any> | FabaImmutableStore<any>, event:FabaEvent) => boolean): void {
         const h: FabaEvent = new event();
         if (!this.cmdList[event.name]) {
-            this.cmdList[h.identifyer] = {event: event, commands: []};
+            this.cmdList[h.eventIdentifyer] = {event: event, commands: []};
         }
 
-        this.cmdList[h.identifyer].commands.push({cmd: command, permission: permission, options: {}});
+        this.cmdList[h.eventIdentifyer].commands.push({cmd: command, permission: permission, options: {}});
     }
 
     /**
@@ -85,7 +85,7 @@ export default class FabaCoreMediator implements IFabaCoreMediator {
     updateCommand(event: typeof FabaEvent, oldCommand: typeof FabaCoreCommand, newCommand: typeof FabaCoreCommand): void {
         const h: FabaEvent = new event();
 
-        this.cmdList[h.identifyer].commands.map((item: IMedaitorCmd) => {
+        this.cmdList[h.eventIdentifyer].commands.map((item: IMedaitorCmd) => {
             if (item.cmd === oldCommand) {
                 item.cmd = newCommand;
             }
@@ -100,16 +100,16 @@ export default class FabaCoreMediator implements IFabaCoreMediator {
      */
     removeCommand(event: typeof FabaEvent, command: typeof FabaCoreCommand): void {
         const h: FabaEvent = new event();
-        for (let i = 0; i < this.cmdList[h.identifyer].commands.length; i++) {
-            let obj = this.cmdList[h.identifyer].commands[i];
+        for (let i = 0; i < this.cmdList[h.eventIdentifyer].commands.length; i++) {
+            let obj = this.cmdList[h.eventIdentifyer].commands[i];
 
             if (obj.cmd === command) {
-                this.cmdList[h.identifyer].commands.splice(i, 1);
+                this.cmdList[h.eventIdentifyer].commands.splice(i, 1);
             }
         }
 
-        if (this.cmdList[h.identifyer].commands.length === 0) {
-            delete this.cmdList[h.identifyer];
+        if (this.cmdList[h.eventIdentifyer].commands.length === 0) {
+            delete this.cmdList[h.eventIdentifyer];
         }
 
     }

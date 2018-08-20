@@ -4,33 +4,12 @@ import FabaCore from "./FabaCore";
  * FabaEvent which is used to communicate with the Commands
  */
 export default class FabaEvent {
-
-    identifyer: string;
-    cbs: any;
     sessionData:any;
     /**
      *
      * @param identifyer
      */
-    constructor(identifyer?: string) {
-        this.identifyer = identifyer;
-    }
-
-    /**
-     *
-     */
-    callBack() {
-        if(this.cbs){
-            this.cbs(this);
-        }
-    }
-
-    /**
-     *
-     * @returns {string}
-     */
-    get name(): string {
-        return this.identifyer;
+    constructor(public eventIdentifyer?: string) {
     }
 
     /**
@@ -40,12 +19,8 @@ export default class FabaEvent {
      * @param result
      */
    async delayDispatch(delay: number, calb?: any, result?: FabaEventResultType): Promise<any> {
-        setTimeout(()=> {
-            if (calb) {
-                this.cbs = calb;
-            }
-
-            return FabaCore.dispatchEvent(this, result);
+       return await setTimeout(async ()=> {
+            return await FabaCore.dispatchEvent(this, result);
         }, delay);
     }
 
@@ -55,12 +30,9 @@ export default class FabaEvent {
      * @param result
      * @returns {Promise<any>}
      */
-    async dispatch(calb?: any, result: FabaEventResultType = FabaEventResultType.EXECUTE) : Promise<any>{
+    async dispatch(e?: any, result: FabaEventResultType = FabaEventResultType.EXECUTE) : Promise<this>{
         if (result === FabaEventResultType.EXECUTE) {
-            return new Promise((resolve, reject)=> {
-                this.cbs = resolve;
-                FabaCore.dispatchEvent(this, result);
-            });
+            return await FabaCore.dispatchEvent(this, result);
         } else {
             FabaCore.dispatchEvent(this, result);
         }
@@ -68,8 +40,8 @@ export default class FabaEvent {
         return null;
     }
 
-    rDispatch(){
-        FabaCore.dispatchEvent(this);
+    syncDispatch() : this{
+        return FabaCore.syncDispatchEvent(this);
     }
 }
 
@@ -81,7 +53,8 @@ export enum FabaEventResultType{
     RESULT,
     ERROR,
     TIMEOUT,
-    OFFLINE
+    OFFLINE,
+    SYNC
 }
 
 export interface IFabaEvent {

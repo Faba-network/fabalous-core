@@ -1,7 +1,6 @@
 import FabaMediator, {INameToValueMap} from "./FabaCoreMediator";
 import FabaEvent, {FabaEventResultType} from "./FabaEvent";
 import FabaStore from "./store/FabaStore";
-import {IMediatorCmdList} from "./FabaCoreMediator";
 
 /**
  * Fabalous Core Class
@@ -103,43 +102,51 @@ export default class FabaCore {
     }
 
     /**
-     * Go through the routes and create the command and execute
+     * Go through the routes and create the command and execute SYNC
      * @param event FabaEvents
      * @param resu FabaEventResultType
      */
-
-    static dispatchEvent(event: FabaEvent, resu?: FabaEventResultType) {
+    static syncDispatchEvent(event: FabaEvent, resu?: FabaEventResultType) {
         for (let a: number = 0; a < this.mediators.length; a++) {
             const routeItem: INameToValueMap = this.mediators[a].mediator.cmdList;
-            if (routeItem && routeItem[event.identifyer]) {
-                for (let obj of routeItem[event.identifyer].commands) {
+            if (routeItem && routeItem[event.eventIdentifyer]) {
+                for (let obj of routeItem[event.eventIdentifyer].commands) {
+                    const store = this.mediators[a].mediator.store || FabaCore.store;
+                    const t = new obj.cmd(store).execute(event);
+                    return t || event;
+                }
+            }
+        }
+    }
 
-                    if (process.env.FABA_DEBUG == "2") {
-                        console.log(event);
-                        console.log(FabaCore.store);
-                    }
-
+    /**
+     * Go through the routes and create the command and execute ASYNC
+     * @param event FabaEvents
+     * @param resu FabaEventResultType
+     */
+    static async dispatchEvent(event: FabaEvent, resu?: FabaEventResultType) {
+        for (let a: number = 0; a < this.mediators.length; a++) {
+            const routeItem: INameToValueMap = this.mediators[a].mediator.cmdList;
+            if (routeItem && routeItem[event.eventIdentifyer]) {
+                for (let obj of routeItem[event.eventIdentifyer].commands) {
                     const store = this.mediators[a].mediator.store || FabaCore.store;
 
                     switch (resu) {
                         case FabaEventResultType.EXECUTE:
                             if (obj.permission && !obj.permission(store, event)) {
-                                return;
+                                return event;
                             }
 
-                            new obj.cmd(store).execute(event);
-                            break;
+                            const t = await new obj.cmd(store).execute(event);
+                            return t || event;
                         case FabaEventResultType.RESULT:
-                            new obj.cmd(store).result(event);
-                            break;
+                            return new obj.cmd(store).result(event);
                         case FabaEventResultType.ERROR:
-                            new obj.cmd(store).error(event);
-                            break;
+                            return new obj.cmd(store).error(event);
                         case FabaEventResultType.TIMEOUT:
-                            new obj.cmd(store).timeout(event);
-                            break;
+                            return new obj.cmd(store).timeout(event);
                         default:
-                            new obj.cmd(store).execute(event);
+                            return new obj.cmd(store).execute(event);
                     }
                 }
             }
